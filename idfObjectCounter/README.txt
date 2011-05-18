@@ -1,0 +1,1 @@
+This is a very very simple script which inputs and EnergyPlus IDF file and lists the objects within it.

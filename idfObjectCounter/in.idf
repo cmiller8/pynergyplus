@@ -1,0 +1,863 @@
+ElectricEquipment,
+  Perimeter_ZN_2_MiscPlug_Equip,  !- Name
+  Perimeter_ZN_2,           !- Zone or ZoneList Name
+  BLDG_EQUIP_SCH,           !- Schedule Name
+  Watts/Area,               !- Design Level Calculation Method
+  ,                         !- Design Level {W}
+  =$Equip,                    !- Watts per Zone Floor Area {W/m2}
+  ,                         !- Watts per Person {W/person}
+  0.0000,                   !- Fraction Latent
+  0.5000,                   !- Fraction Radiant
+  0.0000,                   !- Fraction Lost
+  MiscPlug;                 !- End-Use Subcategory
+
+ElectricEquipment,
+  Perimeter_ZN_3_MiscPlug_Equip,  !- Name
+  Perimeter_ZN_3,           !- Zone or ZoneList Name
+  BLDG_EQUIP_SCH,           !- Schedule Name
+  Watts/Area,               !- Design Level Calculation Method
+  ,                         !- Design Level {W}
+  =$Equip,                    !- Watts per Zone Floor Area {W/m2}
+  ,                         !- Watts per Person {W/person}
+  0.0000,                   !- Fraction Latent
+  0.5000,                   !- Fraction Radiant
+  0.0000,                   !- Fraction Lost
+  MiscPlug;                 !- End-Use Subcategory
+
+ElectricEquipment,
+  Perimeter_ZN_4_MiscPlug_Equip,  !- Name
+  Perimeter_ZN_4,           !- Zone or ZoneList Name
+  BLDG_EQUIP_SCH,           !- Schedule Name
+  Watts/Area,               !- Design Level Calculation Method
+  ,                         !- Design Level {W}
+  =$Equip,                    !- Watts per Zone Floor Area {W/m2}
+  ,                         !- Watts per Person {W/person}
+  0.0000,                   !- Fraction Latent
+  0.5000,                   !- Fraction Radiant
+  0.0000,                   !- Fraction Lost
+  MiscPlug;                 !- End-Use Subcategory
+
+! ***EXTERIOR LOADS***
+Exterior:Lights,
+  Exterior Facade Lighting,  !- Name
+  ALWAYS_ON,                !- Schedule Name
+  2303,                     !- Design Level {W}
+  AstronomicalClock,        !- Control Option
+  Exterior Facade Lighting;  !- End-Use Subcategory
+
+! ***INFILTRATION***
+! Infiltration through ceiling/roof
+ZoneInfiltration:DesignFlowRate,
+  Core_ZN_Infiltration,     !- Name
+  Core_ZN,                  !- Zone or ZoneList Name
+  INFIL_QUARTER_ON_SCH,     !- Schedule Name
+  AirChanges/Hour,          !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  =$Equip,                         !- Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Flow per Exterior Surface Area {m3/s-m2}
+  ,                     !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+ZoneInfiltration:DesignFlowRate,
+  Perimeter_ZN_1_Infiltration,  !- Name
+  Perimeter_ZN_1,           !- Zone or ZoneList Name
+  INFIL_QUARTER_ON_SCH,     !- Schedule Name
+  Flow/ExteriorArea,        !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  ,                         !- Flow per Zone Floor Area {m3/s-m2}
+  =$Equip,                 !- Flow per Exterior Surface Area {m3/s-m2}
+  ,                         !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+ZoneInfiltration:DesignFlowRate,
+  Perimeter_ZN_2_Infiltration,  !- Name
+  Perimeter_ZN_2,           !- Zone or ZoneList Name
+  INFIL_QUARTER_ON_SCH,     !- Schedule Name
+  Flow/ExteriorArea,        !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  ,                         !- Flow per Zone Floor Area {m3/s-m2}
+  =$Equip,                 !- Flow per Exterior Surface Area {m3/s-m2}
+  ,                         !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+ZoneInfiltration:DesignFlowRate,
+  Perimeter_ZN_3_Infiltration,  !- Name
+  Perimeter_ZN_3,           !- Zone or ZoneList Name
+  INFIL_QUARTER_ON_SCH,     !- Schedule Name
+  Flow/ExteriorArea,        !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  ,                         !- Flow per Zone Floor Area {m3/s-m2}
+  =$Equip,                 !- Flow per Exterior Surface Area {m3/s-m2}
+  ,                         !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+ZoneInfiltration:DesignFlowRate,
+  Perimeter_ZN_4_Infiltration,  !- Name
+  Perimeter_ZN_4,           !- Zone or ZoneList Name
+  INFIL_QUARTER_ON_SCH,     !- Schedule Name
+  Flow/ExteriorArea,        !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  ,                         !- Flow per Zone Floor Area {m3/s-m2}
+  =$Equip,                 !- Flow per Exterior Surface Area {m3/s-m2}
+  ,                         !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+! ***INTERNAL MASS***
+InternalMass,
+  Core_ZN Internal Mass,    !- Name
+  InteriorFurnishings,      !- Construction Name
+  Core_ZN,                  !- Zone Name
+  299.3148;                 !- Surface Area {m2}
+
+InternalMass,
+  Perimeter_ZN_1 Internal Mass,  !- Name
+  InteriorFurnishings,      !- Construction Name
+  Perimeter_ZN_1,           !- Zone Name
+  226.9000;                 !- Surface Area {m2}
+
+InternalMass,
+  Perimeter_ZN_2 Internal Mass,  !- Name
+  InteriorFurnishings,      !- Construction Name
+  Perimeter_ZN_2,           !- Zone Name
+  134.6000;                 !- Surface Area {m2}
+
+InternalMass,
+  Perimeter_ZN_3 Internal Mass,  !- Name
+  InteriorFurnishings,      !- Construction Name
+  Perimeter_ZN_3,           !- Zone Name
+  226.9000;                 !- Surface Area {m2}
+
+InternalMass,
+  Perimeter_ZN_4 Internal Mass,  !- Name
+  InteriorFurnishings,      !- Construction Name
+  Perimeter_ZN_4,           !- Zone Name
+  134.6000;                 !- Surface Area {m2}
+
+! ***INTERNAL GAINS SCHEDULES***
+Schedule:Compact,
+  INFIL_QUARTER_ON_SCH,     !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays SummerDesignDay,  !- Field 2
+  Until: 06:00,
+  1.0,                      !- Field 3
+  Until: 22:00,
+  0.25,                     !- Field 5
+  Until: 24:00,
+  1.0,                      !- Field 7
+  For: Saturday WinterDesignDay,  !- Field 9
+  Until: 06:00,
+  1.0,                      !- Field 10
+  Until: 18:00,
+  0.25,                     !- Field 12
+  Until: 24:00,
+  1.0,                      !- Field 14
+  For: Sunday Holidays AllOtherDays,  !- Field 16
+  Until: 24:00,
+  1.0;                      !- Field 17
+
+Schedule:Compact,
+  BLDG_OCC_SCH,             !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: SummerDesignDay,     !- Field 2
+  Until: 06:00,
+  0.0,                      !- Field 3
+  Until: 22:00,
+  1.0,                      !- Field 5
+  Until: 24:00,
+  0.05,                     !- Field 7
+  For: Weekdays,            !- Field 9
+  Until: 06:00,
+  0.0,                      !- Field 10
+  Until: 07:00,
+  0.1,                      !- Field 12
+  Until: 08:00,
+  0.2,                      !- Field 14
+  Until: 12:00,
+  0.95,                     !- Field 16
+  Until: 13:00,
+  0.5,                      !- Field 18
+  Until: 17:00,
+  0.95,                     !- Field 20
+  Until: 18:00,
+  0.3,                      !- Field 22
+  Until: 20:00,
+  0.1,                      !- Field 24
+  Until: 24:00,
+  0.05,                     !- Field 26
+  For: Saturday,            !- Field 28
+  Until: 06:00,
+  0.0,                      !- Field 29
+  Until: 08:00,
+  0.1,                      !- Field 31
+  Until: 12:00,
+  0.3,                      !- Field 33
+  Until: 17:00,
+  0.1,                      !- Field 35
+  Until: 24:00,
+  0.0,                      !- Field 37
+  For: AllOtherDays,        !- Field 39
+  Until: 24:00,
+  0.0;                      !- Field 40
+
+Schedule:Compact,
+  BLDG_LIGHT_SCH,           !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays,            !- Field 2
+  Until: 05:00,
+  0.05,                     !- Field 3
+  Until: 07:00,
+  0.1,                      !- Field 5
+  Until: 08:00,
+  0.3,                      !- Field 7
+  Until: 17:00,
+  0.9,                      !- Field 9
+  Until: 18:00,
+  0.5,                      !- Field 11
+  Until: 20:00,
+  0.3,                      !- Field 13
+  Until: 22:00,
+  0.2,                      !- Field 15
+  Until: 23:00,
+  0.1,                      !- Field 17
+  Until: 24:00,
+  0.05,                     !- Field 19
+  For: Saturday,            !- Field 21
+  Until: 06:00,
+  0.05,                     !- Field 22
+  Until: 08:00,
+  0.1,                      !- Field 24
+  Until: 12:00,
+  0.3,                      !- Field 26
+  Until: 17:00,
+  0.15,                     !- Field 28
+  Until: 24:00,
+  0.05,                     !- Field 30
+  For: SummerDesignDay,     !- Field 32
+  Until: 24:00,
+  1.0,                      !- Field 33
+  For: WinterDesignDay,     !- Field 35
+  Until: 24:00,
+  0.0,                      !- Field 36
+  For: AllOtherDays,        !- Field 38
+  Until: 24:00,
+  0.05;                     !- Field 39
+
+Schedule:Compact,
+  BLDG_EQUIP_SCH,           !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays,            !- Field 2
+  Until: 08:00,
+  0.40,                     !- Field 3
+  Until: 12:00,
+  0.90,                     !- Field 5
+  Until: 13:00,
+  0.80,                     !- Field 7
+  Until: 17:00,
+  0.90,                     !- Field 9
+  Until: 18:00,
+  0.50,                     !- Field 11
+  Until: 24:00,
+  0.40,                     !- Field 13
+  For: Saturday,            !- Field 15
+  Until: 06:00,
+  0.30,                     !- Field 16
+  Until: 08:00,
+  0.4,                      !- Field 18
+  Until: 12:00,
+  0.5,                      !- Field 20
+  Until: 17:00,
+  0.35,                     !- Field 22
+  Until: 24:00,
+  0.30,                     !- Field 24
+  For: SummerDesignDay,     !- Field 26
+  Until: 24:00,
+  1.0,                      !- Field 27
+  For: WinterDesignDay,     !- Field 29
+  Until: 24:00,
+  0.0,                      !- Field 30
+  For: AllOtherDays,        !- Field 32
+  Until: 24:00,
+  0.30;                     !- Field 33
+
+Schedule:Compact,
+  ACTIVITY_SCH,             !- Name
+  Any Number,               !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  120;                      !- Field 3
+
+Schedule:Compact,
+  WORK_EFF_SCH,             !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  0.0;                      !- Field 3
+
+Schedule:Compact,
+  AIR_VELO_SCH,             !- Name
+  Any Number,               !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  0.2;                      !- Field 3
+
+Schedule:Compact,
+  CLOTHING_SCH,             !- Name
+  Any Number,               !- Schedule Type Limits Name
+  Through: 04/30,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  1.0,                      !- Field 3
+  Through: 09/30,           !- Field 5
+  For: AllDays,             !- Field 6
+  Until: 24:00,
+  0.5,                      !- Field 7
+  Through: 12/31,           !- Field 9
+  For: AllDays,             !- Field 10
+  Until: 24:00,
+  1.0;                      !- Field 11
+
+ZoneInfiltration:DesignFlowRate,
+  Attic_Infiltration,       !- Name
+  Attic,                    !- Zone or ZoneList Name
+  ALWAYS_ON,                !- Schedule Name
+  AirChanges/Hour,          !- Design Flow Rate Calculation Method
+  ,                         !- Design Flow Rate {m3/s}
+  ,                         !- Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Flow per Exterior Surface Area {m3/s-m2}
+  1.0,                      !- Air Changes per Hour
+  1.0000,                   !- Constant Term Coefficient
+  0.0000,                   !- Temperature Term Coefficient
+  0.0000,                   !- Velocity Term Coefficient
+  0.0000;                   !- Velocity Squared Term Coefficient
+
+! ***HVAC EQUIPMENT***
+Fan:ConstantVolume,
+  PSZ-AC:1_Fan,             !- Name
+  HVACOperationSchd,        !- Availability Schedule Name
+  0.53625,                  !- Fan Efficiency
+  622.0,                    !- Pressure Rise {Pa}
+  AUTOSIZE,                 !- Maximum Flow Rate {m3/s}
+  0.825,                    !- Motor Efficiency
+  1.0,                      !- Motor In Airstream Fraction
+  PSZ-AC:1_HeatC-PSZ-AC:1_FanNode,  !- Air Inlet Node Name
+  PSZ-AC:1 Supply Equipment Outlet Node,  !- Air Outlet Node Name
+  Fan Energy;               !- End-Use Subcategory
+
+Fan:ConstantVolume,
+  PSZ-AC:2_Fan,             !- Name
+  HVACOperationSchd,        !- Availability Schedule Name
+  0.53625,                  !- Fan Efficiency
+  622.0,                    !- Pressure Rise {Pa}
+  AUTOSIZE,                 !- Maximum Flow Rate {m3/s}
+  0.825,                    !- Motor Efficiency
+  1.0,                      !- Motor In Airstream Fraction
+  PSZ-AC:2_HeatC-PSZ-AC:2_FanNode,  !- Air Inlet Node Name
+  PSZ-AC:2 Supply Equipment Outlet Node,  !- Air Outlet Node Name
+  Fan Energy;               !- End-Use Subcategory
+
+Fan:ConstantVolume,
+  PSZ-AC:3_Fan,             !- Name
+  HVACOperationSchd,        !- Availability Schedule Name
+  0.53625,                  !- Fan Efficiency
+  622.0,                    !- Pressure Rise {Pa}
+  AUTOSIZE,                 !- Maximum Flow Rate {m3/s}
+  0.825,                    !- Motor Efficiency
+  1.0,                      !- Motor In Airstream Fraction
+  PSZ-AC:3_HeatC-PSZ-AC:3_FanNode,  !- Air Inlet Node Name
+  PSZ-AC:3 Supply Equipment Outlet Node,  !- Air Outlet Node Name
+  Fan Energy;               !- End-Use Subcategory
+
+Fan:ConstantVolume,
+  PSZ-AC:4_Fan,             !- Name
+  HVACOperationSchd,        !- Availability Schedule Name
+  0.53625,                  !- Fan Efficiency
+  622.0,                    !- Pressure Rise {Pa}
+  AUTOSIZE,                 !- Maximum Flow Rate {m3/s}
+  0.825,                    !- Motor Efficiency
+  1.0,                      !- Motor In Airstream Fraction
+  PSZ-AC:4_HeatC-PSZ-AC:4_FanNode,  !- Air Inlet Node Name
+  PSZ-AC:4 Supply Equipment Outlet Node,  !- Air Outlet Node Name
+  Fan Energy;               !- End-Use Subcategory
+
+Fan:ConstantVolume,
+  PSZ-AC:5_Fan,             !- Name
+  HVACOperationSchd,        !- Availability Schedule Name
+  0.53625,                  !- Fan Efficiency
+  622.0,                    !- Pressure Rise {Pa}
+  AUTOSIZE,                 !- Maximum Flow Rate {m3/s}
+  0.825,                    !- Motor Efficiency
+  1.0,                      !- Motor In Airstream Fraction
+  PSZ-AC:5_HeatC-PSZ-AC:5_FanNode,  !- Air Inlet Node Name
+  PSZ-AC:5 Supply Equipment Outlet Node,  !- Air Outlet Node Name
+  Fan Energy;               !- End-Use Subcategory
+
+Coil:Heating:Gas,
+  PSZ-AC:1_HeatC,           !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  0.8,                      !- Gas Burner Efficiency
+  AUTOSIZE,                 !- Nominal Capacity {W}
+  PSZ-AC:1_CoolC-PSZ-AC:1_HeatCNode,  !- Air Inlet Node Name
+  PSZ-AC:1_HeatC-PSZ-AC:1_FanNode,  !- Air Outlet Node Name
+  PSZ-AC:1_HeatC-PSZ-AC:1_FanNode;  !- Temperature Setpoint Node Name
+
+Coil:Heating:Gas,
+  PSZ-AC:2_HeatC,           !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  0.8,                      !- Gas Burner Efficiency
+  AUTOSIZE,                 !- Nominal Capacity {W}
+  PSZ-AC:2_CoolC-PSZ-AC:2_HeatCNode,  !- Air Inlet Node Name
+  PSZ-AC:2_HeatC-PSZ-AC:2_FanNode,  !- Air Outlet Node Name
+  PSZ-AC:2_HeatC-PSZ-AC:2_FanNode;  !- Temperature Setpoint Node Name
+
+Coil:Heating:Gas,
+  PSZ-AC:3_HeatC,           !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  0.8,                      !- Gas Burner Efficiency
+  AUTOSIZE,                 !- Nominal Capacity {W}
+  PSZ-AC:3_CoolC-PSZ-AC:3_HeatCNode,  !- Air Inlet Node Name
+  PSZ-AC:3_HeatC-PSZ-AC:3_FanNode,  !- Air Outlet Node Name
+  PSZ-AC:3_HeatC-PSZ-AC:3_FanNode;  !- Temperature Setpoint Node Name
+
+Coil:Heating:Gas,
+  PSZ-AC:4_HeatC,           !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  0.8,                      !- Gas Burner Efficiency
+  AUTOSIZE,                 !- Nominal Capacity {W}
+  PSZ-AC:4_CoolC-PSZ-AC:4_HeatCNode,  !- Air Inlet Node Name
+  PSZ-AC:4_HeatC-PSZ-AC:4_FanNode,  !- Air Outlet Node Name
+  PSZ-AC:4_HeatC-PSZ-AC:4_FanNode;  !- Temperature Setpoint Node Name
+
+Coil:Heating:Gas,
+  PSZ-AC:5_HeatC,           !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  0.8,                      !- Gas Burner Efficiency
+  AUTOSIZE,                 !- Nominal Capacity {W}
+  PSZ-AC:5_CoolC-PSZ-AC:5_HeatCNode,  !- Air Inlet Node Name
+  PSZ-AC:5_HeatC-PSZ-AC:5_FanNode,  !- Air Outlet Node Name
+  PSZ-AC:5_HeatC-PSZ-AC:5_FanNode;  !- Temperature Setpoint Node Name
+
+Coil:Cooling:DX:SingleSpeed,
+  PSZ-AC:1_CoolC DXCoil,    !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  AUTOSIZE,                 !- Rated Total Cooling Capacity {W}
+  AUTOSIZE,                 !- Rated Sensible Heat Ratio
+  3.66668442928701,         !- Rated COP
+  AUTOSIZE,                 !- Rated Air Flow Rate {m3/s}
+  ,                         !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  PSZ-AC:1_OA-PSZ-AC:1_CoolCNode,  !- Air Inlet Node Name
+  PSZ-AC:1_CoolC-PSZ-AC:1_HeatCNode,  !- Air Outlet Node Name
+  Cool-Cap-fT,              !- Total Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,            !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  Cool-EIR-fT,              !- Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,            !- Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR;            !- Part Load Fraction Correlation Curve Name
+
+Coil:Cooling:DX:SingleSpeed,
+  PSZ-AC:2_CoolC DXCoil,    !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  AUTOSIZE,                 !- Rated Total Cooling Capacity {W}
+  AUTOSIZE,                 !- Rated Sensible Heat Ratio
+  3.66668442928701,         !- Rated COP
+  AUTOSIZE,                 !- Rated Air Flow Rate {m3/s}
+  ,                         !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  PSZ-AC:2_OA-PSZ-AC:2_CoolCNode,  !- Air Inlet Node Name
+  PSZ-AC:2_CoolC-PSZ-AC:2_HeatCNode,  !- Air Outlet Node Name
+  Cool-Cap-fT,              !- Total Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,            !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  Cool-EIR-fT,              !- Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,            !- Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR;            !- Part Load Fraction Correlation Curve Name
+
+Coil:Cooling:DX:SingleSpeed,
+  PSZ-AC:3_CoolC DXCoil,    !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  AUTOSIZE,                 !- Rated Total Cooling Capacity {W}
+  AUTOSIZE,                 !- Rated Sensible Heat Ratio
+  3.66668442928701,         !- Rated COP
+  AUTOSIZE,                 !- Rated Air Flow Rate {m3/s}
+  ,                         !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  PSZ-AC:3_OA-PSZ-AC:3_CoolCNode,  !- Air Inlet Node Name
+  PSZ-AC:3_CoolC-PSZ-AC:3_HeatCNode,  !- Air Outlet Node Name
+  Cool-Cap-fT,              !- Total Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,            !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  Cool-EIR-fT,              !- Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,            !- Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR;            !- Part Load Fraction Correlation Curve Name
+
+Coil:Cooling:DX:SingleSpeed,
+  PSZ-AC:4_CoolC DXCoil,    !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  AUTOSIZE,                 !- Rated Total Cooling Capacity {W}
+  AUTOSIZE,                 !- Rated Sensible Heat Ratio
+  3.66668442928701,         !- Rated COP
+  AUTOSIZE,                 !- Rated Air Flow Rate {m3/s}
+  ,                         !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  PSZ-AC:4_OA-PSZ-AC:4_CoolCNode,  !- Air Inlet Node Name
+  PSZ-AC:4_CoolC-PSZ-AC:4_HeatCNode,  !- Air Outlet Node Name
+  Cool-Cap-fT,              !- Total Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,            !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  Cool-EIR-fT,              !- Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,            !- Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR;            !- Part Load Fraction Correlation Curve Name
+
+Coil:Cooling:DX:SingleSpeed,
+  PSZ-AC:5_CoolC DXCoil,    !- Name
+  ALWAYS_ON,                !- Availability Schedule Name
+  AUTOSIZE,                 !- Rated Total Cooling Capacity {W}
+  AUTOSIZE,                 !- Rated Sensible Heat Ratio
+  3.66668442928701,         !- Rated COP
+  AUTOSIZE,                 !- Rated Air Flow Rate {m3/s}
+  ,                         !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  PSZ-AC:5_OA-PSZ-AC:5_CoolCNode,  !- Air Inlet Node Name
+  PSZ-AC:5_CoolC-PSZ-AC:5_HeatCNode,  !- Air Outlet Node Name
+  Cool-Cap-fT,              !- Total Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,            !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  Cool-EIR-fT,              !- Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,            !- Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR;            !- Part Load Fraction Correlation Curve Name
+
+ZoneHVAC:EquipmentList,
+  Core_ZN Equipment,        !- Name
+  AirTerminal:SingleDuct:Uncontrolled,  !- Zone Equipment 1 Object Type
+  Core_ZN Direct Air,       !- Zone Equipment 1 Name
+  1,                        !- Zone Equipment 1 Cooling Sequence
+  1;                        !- Zone Equipment 1 Heating or No-Load Sequence
+
+ZoneHVAC:EquipmentList,
+  Perimeter_ZN_1 Equipment,  !- Name
+  AirTerminal:SingleDuct:Uncontrolled,  !- Zone Equipment 1 Object Type
+  Perimeter_ZN_1 Direct Air,  !- Zone Equipment 1 Name
+  1,                        !- Zone Equipment 1 Cooling Sequence
+  1;                        !- Zone Equipment 1 Heating or No-Load Sequence
+
+ZoneHVAC:EquipmentList,
+  Perimeter_ZN_2 Equipment,  !- Name
+  AirTerminal:SingleDuct:Uncontrolled,  !- Zone Equipment 1 Object Type
+  Perimeter_ZN_2 Direct Air,  !- Zone Equipment 1 Name
+  1,                        !- Zone Equipment 1 Cooling Sequence
+  1;                        !- Zone Equipment 1 Heating or No-Load Sequence
+
+ZoneHVAC:EquipmentList,
+  Perimeter_ZN_3 Equipment,  !- Name
+  AirTerminal:SingleDuct:Uncontrolled,  !- Zone Equipment 1 Object Type
+  Perimeter_ZN_3 Direct Air,  !- Zone Equipment 1 Name
+  1,                        !- Zone Equipment 1 Cooling Sequence
+  1;                        !- Zone Equipment 1 Heating or No-Load Sequence
+
+ZoneHVAC:EquipmentList,
+  Perimeter_ZN_4 Equipment,  !- Name
+  AirTerminal:SingleDuct:Uncontrolled,  !- Zone Equipment 1 Object Type
+  Perimeter_ZN_4 Direct Air,  !- Zone Equipment 1 Name
+  1,                        !- Zone Equipment 1 Cooling Sequence
+  1;                        !- Zone Equipment 1 Heating or No-Load Sequence
+
+! ***SIZING & CONTROLS***
+Sizing:Zone,
+  Core_ZN,                  !- Zone Name
+  14.0000,                  !- Zone Cooling Design Supply Air Temperature {C}
+  40.0000,                  !- Zone Heating Design Supply Air Temperature {C}
+  0.0085,                   !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  0.0080,                   !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  Flow/Person,              !- Outdoor Air Method
+  0.01,                     !- Outdoor Air Flow per Person {m3/s}
+  ,                         !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Outdoor Air Flow per Zone {m3/s}
+  ,                         !- Zone Heating Sizing Factor
+  ,                         !- Zone Cooling Sizing Factor
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  ,                         !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Cooling Minimum Air Flow {m3/s}
+  ,                         !- Cooling Minimum Air Flow Fraction
+  DesignDay,                !- Heating Design Air Flow Method
+  ,                         !- Heating Design Air Flow Rate {m3/s}
+  ,                         !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Heating Maximum Air Flow {m3/s}
+  ;                         !- Heating Maximum Air Flow Fraction
+
+Sizing:Zone,
+  Perimeter_ZN_1,           !- Zone Name
+  14.0000,                  !- Zone Cooling Design Supply Air Temperature {C}
+  40.0000,                  !- Zone Heating Design Supply Air Temperature {C}
+  0.0085,                   !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  0.0080,                   !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  Flow/Person,              !- Outdoor Air Method
+  0.01,                     !- Outdoor Air Flow per Person {m3/s}
+  ,                         !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Outdoor Air Flow per Zone {m3/s}
+  ,                         !- Zone Heating Sizing Factor
+  ,                         !- Zone Cooling Sizing Factor
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  ,                         !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Cooling Minimum Air Flow {m3/s}
+  ,                         !- Cooling Minimum Air Flow Fraction
+  DesignDay,                !- Heating Design Air Flow Method
+  ,                         !- Heating Design Air Flow Rate {m3/s}
+  ,                         !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Heating Maximum Air Flow {m3/s}
+  ;                         !- Heating Maximum Air Flow Fraction
+
+Sizing:Zone,
+  Perimeter_ZN_2,           !- Zone Name
+  14.0000,                  !- Zone Cooling Design Supply Air Temperature {C}
+  40.0000,                  !- Zone Heating Design Supply Air Temperature {C}
+  0.0085,                   !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  0.0080,                   !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  Flow/Person,              !- Outdoor Air Method
+  0.01,                     !- Outdoor Air Flow per Person {m3/s}
+  ,                         !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Outdoor Air Flow per Zone {m3/s}
+  ,                         !- Zone Heating Sizing Factor
+  ,                         !- Zone Cooling Sizing Factor
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  ,                         !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Cooling Minimum Air Flow {m3/s}
+  ,                         !- Cooling Minimum Air Flow Fraction
+  DesignDay,                !- Heating Design Air Flow Method
+  ,                         !- Heating Design Air Flow Rate {m3/s}
+  ,                         !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Heating Maximum Air Flow {m3/s}
+  ;                         !- Heating Maximum Air Flow Fraction
+
+Sizing:Zone,
+  Perimeter_ZN_3,           !- Zone Name
+  14.0000,                  !- Zone Cooling Design Supply Air Temperature {C}
+  40.0000,                  !- Zone Heating Design Supply Air Temperature {C}
+  0.0085,                   !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  0.0080,                   !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  Flow/Person,              !- Outdoor Air Method
+  0.01,                     !- Outdoor Air Flow per Person {m3/s}
+  ,                         !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Outdoor Air Flow per Zone {m3/s}
+  ,                         !- Zone Heating Sizing Factor
+  ,                         !- Zone Cooling Sizing Factor
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  ,                         !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Cooling Minimum Air Flow {m3/s}
+  ,                         !- Cooling Minimum Air Flow Fraction
+  DesignDay,                !- Heating Design Air Flow Method
+  ,                         !- Heating Design Air Flow Rate {m3/s}
+  ,                         !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Heating Maximum Air Flow {m3/s}
+  ;                         !- Heating Maximum Air Flow Fraction
+
+Sizing:Zone,
+  Perimeter_ZN_4,           !- Zone Name
+  14.0000,                  !- Zone Cooling Design Supply Air Temperature {C}
+  40.0000,                  !- Zone Heating Design Supply Air Temperature {C}
+  0.0085,                   !- Zone Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  0.0080,                   !- Zone Heating Design Supply Air Humidity Ratio {kg-H2O/kg-air}
+  Flow/Person,              !- Outdoor Air Method
+  0.01,                     !- Outdoor Air Flow per Person {m3/s}
+  ,                         !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Outdoor Air Flow per Zone {m3/s}
+  ,                         !- Zone Heating Sizing Factor
+  ,                         !- Zone Cooling Sizing Factor
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  ,                         !- Cooling Minimum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Cooling Minimum Air Flow {m3/s}
+  ,                         !- Cooling Minimum Air Flow Fraction
+  DesignDay,                !- Heating Design Air Flow Method
+  ,                         !- Heating Design Air Flow Rate {m3/s}
+  ,                         !- Heating Maximum Air Flow per Zone Floor Area {m3/s-m2}
+  ,                         !- Heating Maximum Air Flow {m3/s}
+  ;                         !- Heating Maximum Air Flow Fraction
+
+ZoneControl:Thermostat,
+  Core_ZN Thermostat,       !- Name
+  Core_ZN,                  !- Zone or ZoneList Name
+  Dual Zone Control Type Sched,  !- Control Type Schedule Name
+  ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+  Core_ZN DualSPSched;      !- Control 1 Name
+
+ZoneControl:Thermostat,
+  Perimeter_ZN_1 Thermostat,  !- Name
+  Perimeter_ZN_1,           !- Zone or ZoneList Name
+  Dual Zone Control Type Sched,  !- Control Type Schedule Name
+  ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+  Perimeter_ZN_1 DualSPSched;  !- Control 1 Name
+
+ZoneControl:Thermostat,
+  Perimeter_ZN_2 Thermostat,  !- Name
+  Perimeter_ZN_2,           !- Zone or ZoneList Name
+  Dual Zone Control Type Sched,  !- Control Type Schedule Name
+  ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+  Perimeter_ZN_2 DualSPSched;  !- Control 1 Name
+
+ZoneControl:Thermostat,
+  Perimeter_ZN_3 Thermostat,  !- Name
+  Perimeter_ZN_3,           !- Zone or ZoneList Name
+  Dual Zone Control Type Sched,  !- Control Type Schedule Name
+  ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+  Perimeter_ZN_3 DualSPSched;  !- Control 1 Name
+
+ZoneControl:Thermostat,
+  Perimeter_ZN_4 Thermostat,  !- Name
+  Perimeter_ZN_4,           !- Zone or ZoneList Name
+  Dual Zone Control Type Sched,  !- Control Type Schedule Name
+  ThermostatSetpoint:DualSetpoint,  !- Control 1 Object Type
+  Perimeter_ZN_4 DualSPSched;  !- Control 1 Name
+
+ThermostatSetpoint:DualSetpoint,
+  Core_ZN DualSPSched,      !- Name
+  HTGSETP_SCH,              !- Heating Setpoint Temperature Schedule Name
+  CLGSETP_SCH;              !- Cooling Setpoint Temperature Schedule Name
+
+ThermostatSetpoint:DualSetpoint,
+  Perimeter_ZN_1 DualSPSched,  !- Name
+  HTGSETP_SCH,              !- Heating Setpoint Temperature Schedule Name
+  CLGSETP_SCH;              !- Cooling Setpoint Temperature Schedule Name
+
+ThermostatSetpoint:DualSetpoint,
+  Perimeter_ZN_2 DualSPSched,  !- Name
+  HTGSETP_SCH,              !- Heating Setpoint Temperature Schedule Name
+  CLGSETP_SCH;              !- Cooling Setpoint Temperature Schedule Name
+
+ThermostatSetpoint:DualSetpoint,
+  Perimeter_ZN_3 DualSPSched,  !- Name
+  HTGSETP_SCH,              !- Heating Setpoint Temperature Schedule Name
+  CLGSETP_SCH;              !- Cooling Setpoint Temperature Schedule Name
+
+ThermostatSetpoint:DualSetpoint,
+  Perimeter_ZN_4 DualSPSched,  !- Name
+  HTGSETP_SCH,              !- Heating Setpoint Temperature Schedule Name
+  CLGSETP_SCH;              !- Cooling Setpoint Temperature Schedule Name
+
+SetpointManager:SingleZone:Reheat,
+  SupAirTemp MngrCore_ZN,   !- Name
+  Temperature,              !- Control Variable
+  10.0,                     !- Minimum Supply Air Temperature {C}
+  50.0,                     !- Maximum Supply Air Temperature {C}
+  Core_ZN,                  !- Control Zone Name
+  Core_ZN Air Node,         !- Zone Node Name
+  Core_ZN Direct Air Inlet Node Name,  !- Zone Inlet Node Name
+  PSZ-AC:1 Supply Equipment Outlet Node;  !- Setpoint Node or NodeList Name
+
+SetpointManager:SingleZone:Reheat,
+  SupAirTemp MngrPerimeter_ZN_1,  !- Name
+  Temperature,              !- Control Variable
+  10.0,                     !- Minimum Supply Air Temperature {C}
+  50.0,                     !- Maximum Supply Air Temperature {C}
+  Perimeter_ZN_1,           !- Control Zone Name
+  Perimeter_ZN_1 Air Node,  !- Zone Node Name
+  Perimeter_ZN_1 Direct Air Inlet Node Name,  !- Zone Inlet Node Name
+  PSZ-AC:2 Supply Equipment Outlet Node;  !- Setpoint Node or NodeList Name
+
+SetpointManager:SingleZone:Reheat,
+  SupAirTemp MngrPerimeter_ZN_2,  !- Name
+  Temperature,              !- Control Variable
+  10.0,                     !- Minimum Supply Air Temperature {C}
+  50.0,                     !- Maximum Supply Air Temperature {C}
+  Perimeter_ZN_2,           !- Control Zone Name
+  Perimeter_ZN_2 Air Node,  !- Zone Node Name
+  Perimeter_ZN_2 Direct Air Inlet Node Name,  !- Zone Inlet Node Name
+  PSZ-AC:3 Supply Equipment Outlet Node;  !- Setpoint Node or NodeList Name
+
+SetpointManager:SingleZone:Reheat,
+  SupAirTemp MngrPerimeter_ZN_3,  !- Name
+  Temperature,              !- Control Variable
+  10.0,                     !- Minimum Supply Air Temperature {C}
+  50.0,                     !- Maximum Supply Air Temperature {C}
+  Perimeter_ZN_3,           !- Control Zone Name
+  Perimeter_ZN_3 Air Node,  !- Zone Node Name
+  Perimeter_ZN_3 Direct Air Inlet Node Name,  !- Zone Inlet Node Name
+  PSZ-AC:4 Supply Equipment Outlet Node;  !- Setpoint Node or NodeList Name
+
+SetpointManager:SingleZone:Reheat,
+  SupAirTemp MngrPerimeter_ZN_4,  !- Name
+  Temperature,              !- Control Variable
+  10.0,                     !- Minimum Supply Air Temperature {C}
+  50.0,                     !- Maximum Supply Air Temperature {C}
+  Perimeter_ZN_4,           !- Control Zone Name
+  Perimeter_ZN_4 Air Node,  !- Zone Node Name
+  Perimeter_ZN_4 Direct Air Inlet Node Name,  !- Zone Inlet Node Name
+  PSZ-AC:5 Supply Equipment Outlet Node;  !- Setpoint Node or NodeList Name
+
+Sizing:System,
+  PSZ-AC:1,                 !- AirLoop Name
+  Sensible,                 !- Type of Load to Size On
+  AUTOSIZE,                 !- Design Outdoor Air Flow Rate {m3/s}
+  1.0,                      !- Minimum System Air Flow Ratio
+  7.0,                      !- Preheat Design Temperature {C}
+  0.008,                    !- Preheat Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Precool Design Temperature {C}
+  0.008,                    !- Precool Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Central Cooling Design Supply Air Temperature {C}
+  40.0,                     !- Central Heating Design Supply Air Temperature {C}
+  NonCoincident,            !- Sizing Option
+  No,                       !- 100% Outdoor Air in Cooling
+  No,                       !- 100% Outdoor Air in Heating
+  0.0085,                   !- Central Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  0.0080,                   !- Central Heating Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  DesignDay,                !- Heating Design Air Flow Method
+  ;                         !- Heating Design Air Flow Rate {m3/s}
+
+Sizing:System,
+  PSZ-AC:2,                 !- AirLoop Name
+  Sensible,                 !- Type of Load to Size On
+  AUTOSIZE,                 !- Design Outdoor Air Flow Rate {m3/s}
+  1.0,                      !- Minimum System Air Flow Ratio
+  7.0,                      !- Preheat Design Temperature {C}
+  0.008,                    !- Preheat Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Precool Design Temperature {C}
+  0.008,                    !- Precool Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Central Cooling Design Supply Air Temperature {C}
+  40.0,                     !- Central Heating Design Supply Air Temperature {C}
+  NonCoincident,            !- Sizing Option
+  No,                       !- 100% Outdoor Air in Cooling
+  No,                       !- 100% Outdoor Air in Heating
+  0.0085,                   !- Central Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  0.0080,                   !- Central Heating Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  DesignDay,                !- Heating Design Air Flow Method
+  ;                         !- Heating Design Air Flow Rate {m3/s}
+
+Sizing:System,
+  PSZ-AC:3,                 !- AirLoop Name
+  Sensible,                 !- Type of Load to Size On
+  AUTOSIZE,                 !- Design Outdoor Air Flow Rate {m3/s}
+  1.0,                      !- Minimum System Air Flow Ratio
+  7.0,                      !- Preheat Design Temperature {C}
+  0.008,                    !- Preheat Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Precool Design Temperature {C}
+  0.008,                    !- Precool Design Humidity Ratio {kg-H2O/kg-Air}
+  12.8000,                  !- Central Cooling Design Supply Air Temperature {C}
+  40.0,                     !- Central Heating Design Supply Air Temperature {C}
+  NonCoincident,            !- Sizing Option
+  No,                       !- 100% Outdoor Air in Cooling
+  No,                       !- 100% Outdoor Air in Heating
+  0.0085,                   !- Central Cooling Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  0.0080,                   !- Central Heating Design Supply Air Humidity Ratio {kg-H2O/kg-Air}
+  DesignDay,                !- Cooling Design Air Flow Method
+  ,                         !- Cooling Design Air Flow Rate {m3/s}
+  DesignDay,                !- Heating Design Air Flow Method
+  ;                         !- Heating Design Air Flow Rate {m3/s}
