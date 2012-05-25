@@ -7,17 +7,6 @@ import re
 import matplotlib.pyplot as plt
 from VRFfunctions import *
 
-#Parse the Cells with multiple values and convert to a list of floats
-def CellParse(cell):
-    numbers = re.findall(r"[+-]? *(?:\d+(?:\,\d*)?|\,\d+)(?:[eE][+-]?\d+)?", cell)
-
-    kWnumlist = []
-    for kWvalstr in numbers:
-        kWnum = float(kWvalstr.replace(",","."))
-        kWnumlist.append(kWnum)
-    return kWnumlist
-
-#Pulls Data out of a spreadsheet
 def GetData(sheetind):
 
     sheet = book.sheet_by_index(sheetind)
@@ -72,14 +61,14 @@ def GetData(sheetind):
                 TCind += 1
     return DataMatrix
 
-#LeastSq R^2 Calc
+#Pulls Data out of a spreadsheet
 def calcerror(infodict,xdata):
     ss_err=(infodict['fvec']**2).sum()
     ss_tot=((xdata-xdata.mean())**2).sum()
     rsquared=1-(ss_err/ss_tot)
     return (rsquared)
 
-#Creates EIRFT and CAPFT
+#LeastSq R^2 Calc
 def FTCurves(TotalData,RatEnergy):
 #Create the CAPFT and EIRFT Curves
 #Start by aggregating the IWB, ODB, and CapRatio
@@ -95,8 +84,8 @@ def FTCurves(TotalData,RatEnergy):
     npODB=np.array(ODB)
     npCapRatio=np.array(CapRatio)
     npPowerRatio=np.array(PowerRatio)
-#    print npPowerRatio
-#    print npCapRatio
+    #    print npPowerRatio
+    #    print npCapRatio
 
     p0=[0,0,0,0,0,0] # initial guesses
 
@@ -111,10 +100,21 @@ def FTCurves(TotalData,RatEnergy):
     #print EIRFTerr
 
     #Can Plot to Compare Fit
-#    EIRPredict = FT(npIWB,npODB,EIRFT)
-#    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
+    #    EIRPredict = FT(npIWB,npODB,EIRFT)
+    #    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
 
     return CAPFT,EIRFT,CAPFTerr,EIRFTerr
+
+#Creates EIRFT and CAPFT
+def CellParse(cell):
+#Parse the Cells with multiple values and convert to a list of floats
+    numbers = re.findall(r"[+-]? *(?:\d+(?:\,\d*)?|\,\d+)(?:[eE][+-]?\d+)?", cell)
+
+    kWnumlist = []
+    for kWvalstr in numbers:
+        kWnum = float(kWvalstr.replace(",","."))
+        kWnumlist.append(kWnum)
+    return kWnumlist
 
 #Creates EIRModFunctions - Modifies EIRRatio as a function of CombRatio
 def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
@@ -160,19 +160,24 @@ def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
 
 #Creates Cooling Combination Ratio Correction Factor - Modifies Capacity as a function of CombRatio
 #Only applies to Comb Ratios above 100%
-def CCRCF(TotalData):
+def CCRCF(TotalData,RatedIWB,RatedODB):
     CapRatio,CombRatio=[],[]
+    CombDivisor = float(100)
     for measurement in TotalData:
-    if measurement[0] > 100.0:
-        CombRatio.append(measurement[0]/100.0)
-        CapRatio.append(measurement[4]/measurement[1])
+        if measurement[2] == RatedIWB and measurement[3] == RatedODB and measurement[0] > 100:
+            CombRatio.append(measurement[0]/CombDivisor)
+            CapRatio.append(measurement[4]/measurement[1])
 
     npCapRatio=np.array(CapRatio)
     npCombRatio=np.array(CombRatio)
 
-    print npCapRatio,npCombRatio
+    #Calc Linear Cooling Combination Ratio Correction Factor
+    p0=[0,0] # initial guesses
+    #Least Square Optimization to find parameters
+    CCRCFactor,cov,infodict,mesg,ier = leastsq(residualsOneDimLinear,p0,args=(npCapRatio,npCombRatio),full_output=1)
+    CCRCFactorErr = calcerror(infodict,npCapRatio)
 
-
+    return CCRCFactor,CCRCFactorErr
 
 def plotcurve(X,Y,Z,Z2):
     fig = plt.figure()
@@ -220,6 +225,10 @@ EIRModFT,EIRFTerr,EIRModFTLo,EIRModFTLoerr = EIRModifier(TotalData,RatedIWB,Rate
 print EIRModFT,EIRFTerr,EIRModFTLo,EIRModFTLoerr
 
 #Find Cooling Combination Ratio Correction Factor
+RatedCap = 49
+
+CCRCFactor, CCRCFactorErr = CCRCF(TotalData,RatedIWB,RatedODB)
+print CCRCFactor, CCRCFactorErr
 
 
 
