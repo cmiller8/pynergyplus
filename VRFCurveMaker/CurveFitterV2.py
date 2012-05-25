@@ -116,7 +116,7 @@ def FTCurves(TotalData,RatEnergy):
 
     return CAPFT,EIRFT,CAPFTerr,EIRFTerr
 
-#Creates EIRModFunctions
+#Creates EIRModFunctions - Modifies EIRRatio as a function of CombRatio
 def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
     CombRatioHi,CapRatioHi,PowerRatioHi=[],[],[]
     CombRatioLo,CapRatioLo,PowerRatioLo=[],[],[]
@@ -158,6 +158,22 @@ def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
 
     return EIRModFTHi,EIRModFTHierr,EIRModFTLo,EIRModFTLoerr
 
+#Creates Cooling Combination Ratio Correction Factor - Modifies Capacity as a function of CombRatio
+#Only applies to Comb Ratios above 100%
+def CCRCF(TotalData):
+    CapRatio,CombRatio=[],[]
+    for measurement in TotalData:
+    if measurement[0] > 100.0:
+        CombRatio.append(measurement[0]/100.0)
+        CapRatio.append(measurement[4]/measurement[1])
+
+    npCapRatio=np.array(CapRatio)
+    npCombRatio=np.array(CombRatio)
+
+    print npCapRatio,npCombRatio
+
+
+
 def plotcurve(X,Y,Z,Z2):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -177,23 +193,33 @@ sheetcount = 0
 #print book.nsheets
 
 #Create array with all data from sheet
+#Excel sheets in the example files are created by uploading the Daikin Performance Data PDF
+#to http://www.pdftoexcelonline.com/ The excel file is parsed and laoded in to a python list
 while book.nsheets > sheetcount:
     SheetData = GetData(sheetcount)
     for row in SheetData:
         TotalData.append(row)
     sheetcount += 1
 
-#Find Cooling CAPFT and EIRFT
+#Find Cooling Cooling Capacity Ratio Modifier Function (CAPFT)
+# and Energy Input Ratio Modifier Function (EIRFT)
+#This script is designed to simplify the process described in:
+#https://securedb.fsec.ucf.edu/pub/pub_show_detail?v_pub_id=4588 by neglecting to created a High AND Low
+#Performance curves.
 RatedCoolingEnergy = 16.2
 CAPFT,EIRFT,CAPFTerr,EIRFTerr = FTCurves(TotalData,RatedCoolingEnergy)
 print CAPFT,EIRFT,CAPFTerr,EIRFTerr
 
-#Find Cooling Energy Input Ratio Modifier Function
+#Find Cooling Energy Input Ratio Modifier Functions -
+#Hi = CombRatio >100, Lo = CombRatio <= 100
 RatedIWB = 19
 RatedODB = 35
 
 EIRModFT,EIRFTerr,EIRModFTLo,EIRModFTLoerr = EIRModifier(TotalData,RatedIWB,RatedODB,RatedCoolingEnergy)
+
 print EIRModFT,EIRFTerr,EIRModFTLo,EIRModFTLoerr
+
+#Find Cooling Combination Ratio Correction Factor
 
 
 
