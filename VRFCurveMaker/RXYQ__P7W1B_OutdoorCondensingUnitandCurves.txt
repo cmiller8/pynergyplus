@@ -1,0 +1,394 @@
+! HVAC:                           The VRF system uses DX cooling and DX heating coils in each of 5 terminal units.
+!                                 Once all terminal units are simulated, the condenser attached to those terminal
+!                                 units is then simulated. The input is partially autosized.
+!                                 Terminal units are set to provide a fixed amount of outdoor air.
+
+
+  AirConditioner:VariableRefrigerantFlow,
+    VRF Heat Pump,           !- Heat Pump Name
+    VRFCondAvailSched,       !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    3.2917,                  !- Rated Cooling COP {W/W}
+    -5,                      !- Minimum Outdoor Temperature in Cooling Mode {C}
+    43,                      !- Maximum Outdoor Temperature in Cooling Mode {C}
+    VRFCoolCapFT,            !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
+    VRFCoolCapFTBoundary,    !- Cooling Capacity Ratio Boundary Curve Name
+    VRFCoolCapFTHi,          !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFCoolEIRFT,            !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    VRFCoolEIRFTBoundary,    !- Cooling Energy Input Ratio Boundary Curve Name
+    VRFCoolEIRFTHi,          !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
+    CoolingEIRLowPLR,        !- Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    CoolingEIRHiPLR,         !- Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    CoolingCombRatio,        !- Cooling Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Cooling Part-Load Fraction Correlation Curve Name
+    autosize,                !- Rated Total Heating Capacity {W}
+    3.5484,                  !- Rated Heating COP {W/W}
+    -20,                     !- Minimum Outdoor Temperature in Heating Mode {C}
+    20,                      !- Maximum Outdoor Temperature in Heating Mode {C}
+    VRFHeatCapFT,            !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
+    VRFHeatCapFTBoundary,    !- Heating Capacity Ratio Boundary Curve Name
+    VRFHeatCapFTHi,          !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFHeatEIRFT,            !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    VRFHeatEIRFTBoundary,    !- Heating Energy Input Ratio Boundary Curve Name
+    VRFHeatEIRFTHi,          !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
+    WetBulbTemperature,      !- Heating Performance Curve Outdoor Temperature Type
+    HeatingEIRLowPLR,        !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    HeatingEIRHiPLR,         !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    HeatingCombRatio,        !- Heating Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name
+    0.25,                    !- Minimum Heat Pump Part-Load Ratio
+    SPACE1-1,                !- Zone Name for Master Thermostat Location
+    LoadPriority,            !- Master Thermostat Priority Control Type
+    ,                        !- Thermostat Priority Schedule Name
+    VRF Heat Pump TU List,   !- Zone Terminal Unit List Name
+    No,                      !- Heat Pump Waste Heat Recovery
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Cooling Mode {m}
+    10,                      !- Vertical Height used for Piping Correction Factor {m}
+    CoolingLengthCorrectionFactor,  !- Piping Correction Factor for Length in Cooling Mode Curve Name
+    -0.000386,               !- Piping Correction Factor for Height in Cooling Mode Coefficient
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Heating Mode {m}
+    ,                        !- Piping Correction Factor for Length in Heating Mode Curve Name
+    ,                        !- Piping Correction Factor for Height in Heating Mode Coefficient
+    15,                      !- Crankcase Heater Power per Compressor {W}
+    3,                       !- Number of Compressors
+    0.33,                    !- Ratio of Compressor Size to Total Compressor Capacity
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Crankcase Heater {C}
+    Resistive,               !- Defrost Strategy
+    Timed,                   !- Defrost Control
+    ,                        !- Defrost Energy Input Ratio Modifier Function of Temperature Curve Name
+    ,                        !- Defrost Time Period Fraction
+    0.0000001,               !- Resistive Defrost Heater Capacity {W}
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Defrost Operation {C}
+    AirCooled,               !- Condenser Type
+    MyVRFOANode,             !- Condenser Node Name
+    ,                        !- Evaporative Condenser Effectiveness {dimensionless}
+    ,                        !- Evaporative Condenser Air Flow Rate {m3/s}
+    0,                       !- Evaporative Condenser Pump Rated Power Consumption {W}
+    ,                        !- Supply Water Storage Tank Name
+    0,                       !- Basin Heater Capacity {W/K}
+    ,                        !- Basin Heater Setpoint Temperature {C}
+    ,                        !- Basin Heater Operating Schedule Name
+    Electric;                !- Fuel Type
+	
+  OutdoorAir:NodeList,
+    OutsideAirInletNodes;    !- Node or NodeList Name 1	
+	
+  NodeList,
+    OutsideAirInletNodes,    !- Name
+    Outside Air Inlet Node 1,!- Node 1 Name
+    Outside Air Inlet Node 2,!- Node 2 Name
+    Outside Air Inlet Node 3,!- Node 3 Name
+    Outside Air Inlet Node 4,!- Node 4 Name
+    Outside Air Inlet Node 5,!- Node 5 Name
+    MyVRFOANode;             !- Node 6 Name
+	
+  Schedule:Compact,
+    VRFCondAvailSched,       !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 12:00,1.0,        !- Field 3
+    Until: 13:00,1.0,        !- Field 5
+    Until: 24:00,1.0;        !- Field 7
+
+  ZoneTerminalUnitList,
+    VRF Heat Pump TU List,   !- Zone Terminal Unit List Name
+    TU1;                    !- Zone Terminal Unit Name 5
+	
+  Curve:Biquadratic,
+    VRFCoolCapFT,            !- Name
+    0.576856477,             !- Coefficient1 Constant
+    0.017450222,             !- Coefficient2 x
+    0.00058326,              !- Coefficient3 x**2
+    1.15563E-07,             !- Coefficient4 y
+    7.61504E-09,             !- Coefficient5 y**2
+    -1.1503E-08,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    23,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    VRFCoolCapFTBoundary,    !- Name
+    25.73473775,             !- Coefficient1 Constant
+    -0.03150043,             !- Coefficient2 x
+    -0.01416595,             !- Coefficient3 x**2
+    0,                       !- Coefficient4 x**3
+    11,                      !- Minimum Value of x
+    30,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFCoolCapFTHi,          !- Name
+    0.6861551,               !- Coefficient1 Constant
+    0.0207869,               !- Coefficient2 x
+    0.0005445,               !- Coefficient3 x**2
+    -0.0016098,              !- Coefficient4 y
+    -6.254E-07,              !- Coefficient5 y**2
+    -0.000339,               !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    16,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFCoolEIRFT,            !- Name
+    0.989010541,             !- Coefficient1 Constant
+    -0.02347967,             !- Coefficient2 x
+    0.000199711,             !- Coefficient3 x**2
+    0.005968336,             !- Coefficient4 y
+    -1.0289E-07,             !- Coefficient5 y**2
+    -0.00015686,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    23,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    VRFCoolEIRFTBoundary,    !- Name
+    25.73473775,             !- Coefficient1 Constant
+    -0.03150043,             !- Coefficient2 x
+    -0.01416595,             !- Coefficient3 x**2
+    0,                       !- Coefficient4 x**3
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFCoolEIRFTHi,          !- Name
+    0.18293171,              !- Coefficient1 Constant
+    0.01635442,              !- Coefficient2 x
+    -0.0003505,              !- Coefficient3 x**2
+    0.02375694,              !- Coefficient4 y
+    0.00017854,              !- Coefficient5 y**2
+    -0.0006177,              !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    16,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    CoolingEIRLowPLR,        !- Name
+    0.4628123,               !- Coefficient1 Constant
+    -1.0402406,              !- Coefficient2 x
+    2.17491,                 !- Coefficient3 x**2
+    -0.5974817,              !- Coefficient4 x**3
+    0,                       !- Minimum Value of x
+    1,                       !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+
+  Curve:Quadratic,
+    CoolingEIRHiPLR,         !- Name
+    1.0,                     !- Coefficient1 Constant
+    0.0,                     !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    1.0,                     !- Minimum Value of x
+    1.5,                     !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Linear,
+    CoolingCombRatio,        !- Name
+    0.618055,                !- Coefficient1 Constant
+    0.381945,                !- Coefficient2 x
+    1.0,                     !- Minimum Value of x
+    1.5,                     !- Maximum Value of x
+    1.0,                     !- Minimum Curve Output
+    1.2,                     !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  CURVE:QUADRATIC,
+    VRFCPLFFPLR,             !- Name
+    0.85,                    !- Coefficient1 Constant
+    0.15,                    !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    0.0,                     !- Minimum Value of x
+    1.0,                     !- Maximum Value of x
+    0.85,                    !- Minimum Curve Output
+    1.0,                     !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFHeatCapFT,            !- Name
+    1.014599599,             !- Coefficient1 Constant
+    -0.002506703,            !- Coefficient2 x
+    -0.000141599,            !- Coefficient3 x**2
+    0.026931595,             !- Coefficient4 y
+    1.83538E-06,             !- Coefficient5 y**2
+    -0.000358147,            !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    -20,                     !- Minimum Value of y
+    15,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    VRFHeatCapFTBoundary,    !- Name
+    -7.6000882,              !- Coefficient1 Constant
+    3.05090016,              !- Coefficient2 x
+    -0.1162844,              !- Coefficient3 x**2
+    0.0,                     !- Coefficient4 x**3
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFHeatCapFTHi,          !- Name
+    1.161134821,             !- Coefficient1 Constant
+    0.027478868,             !- Coefficient2 x
+    -0.00168795,             !- Coefficient3 x**2
+    0.001783378,             !- Coefficient4 y
+    2.03208E-06,             !- Coefficient5 y**2
+    -6.8969E-05,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    -10,                     !- Minimum Value of y
+    15,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFHeatEIRFT,            !- Name
+    0.87465501,              !- Coefficient1 Constant
+    -0.01319754,             !- Coefficient2 x
+    0.00110307,              !- Coefficient3 x**2
+    -0.0133118,              !- Coefficient4 y
+    0.00089017,              !- Coefficient5 y**2
+    -0.00012766,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    -20,                     !- Minimum Value of y
+    12,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    VRFHeatEIRFTBoundary,    !- Name
+    -7.6000882,              !- Coefficient1 Constant
+    3.05090016,              !- Coefficient2 x
+    -0.1162844,              !- Coefficient3 x**2
+    0.0,                     !- Coefficient4 x**3
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    -20,                     !- Minimum Curve Output
+    15,                      !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+
+  Curve:Biquadratic,
+    VRFHeatEIRFTHi,          !- Name
+    2.504005146,             !- Coefficient1 Constant
+    -0.05736767,             !- Coefficient2 x
+    4.07336E-05,             !- Coefficient3 x**2
+    -0.12959669,             !- Coefficient4 y
+    0.00135839,              !- Coefficient5 y**2
+    0.00317047,              !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    27,                      !- Maximum Value of x
+    -10,                     !- Minimum Value of y
+    15,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    HeatingEIRLowPLR,        !- Name
+    0.1400093,               !- Coefficient1 Constant
+    0.6415002,               !- Coefficient2 x
+    0.1339047,               !- Coefficient3 x**2
+    0.0845859,               !- Coefficient4 x**3
+    0,                       !- Minimum Value of x
+    1,                       !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Quadratic,
+    HeatingEIRHiPLR,         !- Name
+    2.4294355,               !- Coefficient1 Constant
+    -2.235887,               !- Coefficient2 x
+    0.8064516,               !- Coefficient3 x**2
+    1.0,                     !- Minimum Value of x
+    1.5,                     !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Linear,
+    HeatingCombRatio,        !- Name
+    0.96034,                 !- Coefficient1 Constant
+    0.03966,                 !- Coefficient2 x
+    1.0,                     !- Minimum Value of x
+    1.5,                     !- Maximum Value of x
+    1.0,                     !- Minimum Curve Output
+    1.023,                   !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Biquadratic,
+    CoolingLengthCorrectionFactor,  !- Name
+    1.0693794,               !- Coefficient1 Constant
+    -0.0014951,              !- Coefficient2 x
+    2.56E-06,                !- Coefficient3 x**2
+    -0.1151104,              !- Coefficient4 y
+    0.0511169,               !- Coefficient5 y**2
+    -0.0004369,              !- Coefficient6 x*y
+    8,                       !- Minimum Value of x
+    175,                     !- Maximum Value of x
+    0.5,                     !- Minimum Value of y
+    1.5,                     !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type

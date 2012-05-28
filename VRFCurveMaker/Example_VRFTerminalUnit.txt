@@ -1,0 +1,140 @@
+ ! HVAC:                           The VRF system uses DX cooling and DX heating coils in each of 5 terminal units.
+!                                 Once all terminal units are simulated, the condenser attached to those terminal
+!                                 units is then simulated. The input is partially autosized.
+!                                 Terminal units are set to provide a fixed amount of outdoor air.
+
+ ZoneHVAC:EquipmentList,
+    SPACE1-1 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    TU1,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    TU1,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    TU1 Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    TU1 Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    TU1 VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    TU1 OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    TU1 VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    TU1 VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+
+  OutdoorAir:Mixer,
+    TU1 OA Mixer,            !- Name
+    TU1 VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node 1,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 1,!- Relief Air Stream Node Name
+    TU1 Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    TU1 VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    TU1 VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    TU1 Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    TU1 VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    TU1 VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    TU1 VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+	
+	
+  Curve:Cubic,
+    VRFTUHeatCapFT,          !- Name
+    -0.390708928227928,      !- Coefficient1 Constant
+    0.261815023760162,       !- Coefficient2 x
+    -0.0130431603151873,     !- Coefficient3 x**2
+    0.000178131745997821,    !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    50.0,                    !- Maximum Value of x
+    0.5,                     !- Minimum Curve Output
+    1.5,                     !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    TU1 VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    TU1 VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    TU1 VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  Curve:Cubic,
+    VRFTUCoolCapFT,          !- Name
+    0.504547273506488,       !- Coefficient1 Constant
+    0.0288891279198444,      !- Coefficient2 x
+    -0.000010819418650677,   !- Coefficient3 x**2
+    0.0000101359395177008,   !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    50.0,                    !- Maximum Value of x
+    0.5,                     !- Minimum Curve Output
+    1.5,                     !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Quadratic,
+    VRFACCoolCapFFF,         !- Name
+    0.8,                     !- Coefficient1 Constant
+    0.2,                     !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    0.5,                     !- Minimum Value of x
+    1.5;                     !- Maximum Value of x
+
+  Schedule:Compact,
+    VRFFanSchedule,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 7:00,1.0,         !- Field 3
+    Until: 18:00,1.0,        !- Field 5
+    Until: 24:00,1.0;        !- Field 7
+
+  Schedule:Compact,
+    VRFAvailSched,           !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 3/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0,        !- Field 3
+    Through: 9/30,           !- Field 5
+    For: WeekDays,           !- Field 6
+    Until: 7:00,1.0,         !- Field 7
+    Until: 17:00,1.0,        !- Field 9
+    Until: 24:00,1.0,        !- Field 11
+    For: SummerDesignDay WinterDesignDay, !- Field 13
+    Until: 24:00,1.0,        !- Field 14
+    For: AllOtherDays,       !- Field 16
+    Until: 24:00,1.0,        !- Field 17
+    Through: 12/31,          !- Field 19
+    For: AllDays,            !- Field 20
+    Until: 24:00,1.0;        !- Field 21
