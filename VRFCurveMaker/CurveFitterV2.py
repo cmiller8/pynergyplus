@@ -7,6 +7,7 @@ import re
 import matplotlib.pyplot as plt
 from VRFfunctions import *
 
+#Pulls Data out of a spreadsheet
 def GetData(sheetind):
 
     sheet = book.sheet_by_index(sheetind)
@@ -61,14 +62,25 @@ def GetData(sheetind):
                 TCind += 1
     return DataMatrix
 
-#Pulls Data out of a spreadsheet
+#Parses Cells
+def CellParse(cell):
+#Parse the Cells with multiple values and convert to a list of floats
+    numbers = re.findall(r"[+-]? *(?:\d+(?:\,\d*)?|\,\d+)(?:[eE][+-]?\d+)?", cell)
+
+    kWnumlist = []
+    for kWvalstr in numbers:
+        kWnum = float(kWvalstr.replace(",","."))
+        kWnumlist.append(kWnum)
+    return kWnumlist
+
+#LeastSq R^2 Calc
 def calcerror(infodict,xdata):
     ss_err=(infodict['fvec']**2).sum()
     ss_tot=((xdata-xdata.mean())**2).sum()
     rsquared=1-(ss_err/ss_tot)
     return (rsquared)
 
-#LeastSq R^2 Calc
+#Creates EIRFT and CAPFT
 def FTCurves(TotalData,RatEnergy):
 #Create the CAPFT and EIRFT Curves
 #Start by aggregating the IWB, ODB, and CapRatio
@@ -104,17 +116,6 @@ def FTCurves(TotalData,RatEnergy):
     #    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
 
     return CAPFT,EIRFT,CAPFTerr,EIRFTerr
-
-#Creates EIRFT and CAPFT
-def CellParse(cell):
-#Parse the Cells with multiple values and convert to a list of floats
-    numbers = re.findall(r"[+-]? *(?:\d+(?:\,\d*)?|\,\d+)(?:[eE][+-]?\d+)?", cell)
-
-    kWnumlist = []
-    for kWvalstr in numbers:
-        kWnum = float(kWvalstr.replace(",","."))
-        kWnumlist.append(kWnum)
-    return kWnumlist
 
 #Creates EIRModFunctions - Modifies EIRRatio as a function of CombRatio
 def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
