@@ -125,7 +125,7 @@ def plotcurve(X,Y,Z,Z2):
 
 #Load TotalData Array from Text file output of CellParser.py
 TotalData = []
-csvreader = csv.reader(file("RXYQ18Cool.xls.csv"),quoting=csv.QUOTE_NONNUMERIC)
+csvreader = csv.reader(file("RXYQ18Heat.xls.csv"),quoting=csv.QUOTE_NONNUMERIC)
 for row in csvreader:
     TotalData.append(row)
 for row in TotalData[1:]:
@@ -134,12 +134,12 @@ for row in TotalData[1:]:
     for item in row[:0]:
         item=int(item)
 
-#Find Cooling Cooling Capacity Ratio Modifier Function (CAPFT)
+#Find Heating Capacity Ratio Modifier Function (CAPFT)
 # and Energy Input Ratio Modifier Function (EIRFT)
 #This script is designed to simplify the process described in:
 #https://securedb.fsec.ucf.edu/pub/pub_show_detail?v_pub_id=4588 by neglecting to created a High AND Low
 #Performance curves.
-RatedCoolingEnergy = 16.2
+RatedCoolingEnergy = 15.3
 CAPFT,EIRFT,CAPFTerr,EIRFTerr,IWBmax,IWBmin,ODBmax,ODBmin = FTCurves(TotalData,RatedCoolingEnergy)
 
 #Convert Numpy arrays back to lists for output
@@ -148,8 +148,8 @@ EIRFTlist = (EIRFT.tolist())
 
 #Find Cooling Energy Input Ratio Modifier Functions -
 #Hi = CombRatio >100, Lo = CombRatio <= 100
-RatedIWB = 19
-RatedODB = 35
+RatedIWB = 20
+RatedODB = 6
 
 EIRModFTHi,EIRFTHierr,EIRModFTLo,EIRModFTLoerr = EIRModifier(TotalData,RatedIWB,RatedODB,RatedCoolingEnergy)
 
@@ -159,22 +159,33 @@ EIRModFTHi = (EIRModFTHi.tolist())
 EIRModFTLo = (EIRModFTLo.tolist())
 
 #Find Cooling Combination Ratio Correction Factor
-RatedCap = 49
+RatedCap = 56.5
 
 CCRCFactor, CCRCFactorErr = CCRCF(TotalData,RatedIWB,RatedODB)
 #print CCRCFactor, CCRCFactorErr
 
-VRFCoolCapFT = CoolingCapModifierFunction(CAPFTlist)
-EIRCoolCapFT = EnergyInputRatioModifierFunction(EIRFTlist)
-EIRCoolModLowFT = EnergyInputRatioModifierPartLoadLow(EIRModFTLo)
-EIRCoolModHiFT = EnergyInputRatioModifierPartLoadHigh(EIRModFTHi)
-CoolingCombCorrFactor =
+VRFHeatCapFT = HeatCapModifierFunction(CAPFTlist)
+VRFHeatEIRFT = HeatEnergyInputRatioModifierFunction(EIRFTlist)
+HeatEIRLowPLR = HeatEnergyInputRatioModifierPartLoadLow(EIRModFTLo)
+HeatEIRHiPLR = HeatEnergyInputRatioModifierPartLoadHigh(EIRModFTHi)
+HeatingCombCorrFactor = HeatCombinationRatioCorrectionFactor(CCRCFactor)
+CPLFFPLR = CPLFFPLR()
 
-print VRFCoolCapFT
-print EIRCoolCapFT
-print EIRCoolModLowFT
-print EIRCoolModHiFT
+#print VRFCoolCapFT
+#print EIRCoolCapFT
+#print EIRCoolModLowFT
+#print EIRCoolModHiFT
+#print CoolingCombCorrFactor
 
+#Print Errors
+print CAPFTerr, EIRFTerr, EIRModFTLoerr, EIRFTHierr, CCRCFactorErr
+
+CurveObjectFile = open("HeatingCurveObjects.txt","w")
+CurveObjectFile.write(VRFHeatCapFT)
+CurveObjectFile.write(VRFHeatEIRFT)
+CurveObjectFile.write(HeatEIRLowPLR)
+CurveObjectFile.write(HeatEIRHiPLR)
+CurveObjectFile.write(HeatingCombCorrFactor)
 
 
 

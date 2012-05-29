@@ -31,9 +31,18 @@ def GetData(sheetind):
     ODB = sheet.cell(4,2).value
     ODBlist = CellParse(ODB)
 
-    #Column numbers that have 'TC' kW values
-    TCColumns = [3,5,7,9,11,13,15]
-    PIColumns = [4,6,8,10,12,14,16]
+    #Column numbers that have 'TC' kW values - According to the format of the Daikin PDF's converted
+    #   into Excel using pdftoexcel.com
+    #For Cooling:
+#    TCColumns = [3,5,7,9,11,13,15]
+#    PIColumns = [4,6,8,10,12,14,16]
+#    DataRows = [4,5,6,7]
+    #For Heating:
+#    TCColumns = [3,5,7,9,11,13]
+#    PIColumns = [4,6,8,10,12,14]
+#    DataRows = [4,5,6,7]
+    TCColumns = [3,5,7,9,11,13]
+    PIColumns = [4,6,8,10,12,14]
     DataRows = [4,5,6,7]
 
     DataMatrix = []

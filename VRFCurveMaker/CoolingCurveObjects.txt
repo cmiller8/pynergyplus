@@ -1,0 +1,102 @@
+  Curve:Biquadratic,
+    VRFCoolCapFT,               !- Name
+    -1.537422,             !- Coefficient1 Constant
+    0.1987128,             !- Coefficient2 x
+    -0.003349911,             !- Coefficient3 x**2
+    0.01776847,             !- Coefficient3 y
+    -5.67708E-05,             !- Coefficient5 y**2
+    -0.000927354,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+      
+  Curve:Biquadratic,
+    VRFCoolEIRFT,               !- Name
+    -1.438178,             !- Coefficient1 Constant
+    0.1776199,             !- Coefficient2 x
+    -0.003857106,             !- Coefficient3 x**2
+    -0.01119869,             !- Coefficient3 y
+    0.0003839635,             !- Coefficient5 y**2
+    0.0004537174,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+      
+  Curve:Cubic,
+    CoolingEIRLowPLR,        !- Name
+    -0.132134,             !- Coefficient1 Constant
+    0.01130364,             !- Coefficient2 x
+    -4.100529E-05,             !- Coefficient3 x**2
+    4.115226E-07,             !- Coefficient4 x**3
+    0,                      !- Minimum Value of x
+    1,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+      
+  Curve:Quadratic,
+    CoolingEIRHiPLR,        !- Name
+    0.9382716,             !- Coefficient1 Constant
+    0.000617284,             !- Coefficient2 x
+    -5.148059E-19,             !- Coefficient3 x**2
+    1.0,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Dimensionless,             !- Input Unit Type for X
+    Dimensionless;             !- Output Unit Type
+     
+   Curve:Linear,
+    CoolingCombRatio,        !- Name
+    1.54325,             !- Coefficient1 Constant
+    -0.5630084,             !- Coefficient2 x
+    1.0,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    1.0,                        !- Minimum Curve Output
+    1.2,                        !- Maximum Curve Output
+    Dimensionless,             !- Input Unit Type for X
+    Dimensionless;             !- Output Unit Type
+      
+  Curve:Biquadratic,
+    VRFCoolCapFT,               !- Name
+    -1.537422,             !- Coefficient1 Constant
+    0.1987128,             !- Coefficient2 x
+    -0.003349911,             !- Coefficient3 x**2
+    0.01776847,             !- Coefficient3 y
+    -5.67708E-05,             !- Coefficient5 y**2
+    -0.000927354,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+      
+  CURVE:QUADRATIC,
+    VRFCPLFFPLR,             !- Name
+    0.85,                    !- Coefficient1 Constant
+    0.15,                    !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    0.0,                     !- Minimum Value of x
+    1.0,                     !- Maximum Value of x
+    0.85,                    !- Minimum Curve Output
+    1.0,                     !- Maximum Curve Output
+    Dimensionless,           !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+      

@@ -1,0 +1,72 @@
+  Curve:Biquadratic,
+    VRFHeatCapFT,               !- Name
+    0.929600138209,             !- Coefficient1 Constant
+    0.019612992362,             !- Coefficient2 x
+    -0.000815792097853,             !- Coefficient3 x**2
+    0.0454625123918,             !- Coefficient3 y
+    -0.000268288526819,             !- Coefficient5 y**2
+    -0.00137427365726,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+      
+  Curve:Biquadratic,
+    VRFHeatEIRFT,               !- Name
+    0.726002557277,             !- Coefficient1 Constant
+    0.0233119817194,             !- Coefficient2 x
+    -0.000627321301169,             !- Coefficient3 x**2
+    0.0393045558621,             !- Coefficient3 y
+    -0.000775106149474,             !- Coefficient5 y**2
+    -0.00188206915843,             !- Coefficient6 x*y
+    15,                      !- Minimum Value of x
+    24,                      !- Maximum Value of x
+    -5,                      !- Minimum Value of y
+    43,                      !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+      
+  Curve:Cubic,
+    HeatEIRLowPLR,        !- Name
+    1.8218674134,             !- Coefficient1 Constant
+    -0.0662986305545,             !- Coefficient2 x
+    0.00102707749755,             !- Coefficient3 x**2
+    -4.52069716731e-06,             !- Coefficient4 x**3
+    0,                      !- Minimum Value of x
+    1,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature;             !- Output Unit Type
+      
+  Curve:Quadratic,
+    HeatEIRHiPLR,        !- Name
+    1.32679738562,             !- Coefficient1 Constant
+    -0.00326797385621,             !- Coefficient2 x
+    2.37096130394e-19,             !- Coefficient3 x**2
+    1.0,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Dimensionless,             !- Input Unit Type for X
+    Dimensionless;             !- Output Unit Type
+      
+  Curve:Linear,
+    HeatingCombRatio,        !- Name
+    1.91368948512,             !- Coefficient1 Constant
+    -0.7856429285,             !- Coefficient2 x
+    1.0,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    1.0,                        !- Minimum Curve Output
+    1.023,                        !- Maximum Curve Output
+    Dimensionless,             !- Input Unit Type for X
+    Dimensionless;             !- Output Unit Type
+      
