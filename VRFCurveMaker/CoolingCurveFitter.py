@@ -162,32 +162,18 @@ EIRModFTLo = (EIRModFTLo.tolist())
 RatedCap = 49
 
 CCRCFactor, CCRCFactorErr = CCRCF(TotalData,RatedIWB,RatedODB)
-#print CCRCFactor, CCRCFactorErr
-
-VRFCoolCapFT = CoolingCapModifierFunction(CAPFTlist)
-EIRCoolCapFT = EnergyInputRatioModifierFunction(EIRFTlist)
-EIRCoolModLowFT = EnergyInputRatioModifierPartLoadLow(EIRModFTLo)
-EIRCoolModHiFT = EnergyInputRatioModifierPartLoadHigh(EIRModFTHi)
-CoolingCombCorrFactor = CoolingCombinationRatioCorrectionFactor(CCRCFactor)
-CPLFFPLR = CPLFFPLR()
-
-#print VRFCoolCapFT
-#print EIRCoolCapFT
-#print EIRCoolModLowFT
-#print EIRCoolModHiFT
-#print CoolingCombCorrFactor
 
 #Print Errors
 print CAPFTerr, EIRFTerr, EIRModFTLoerr, EIRFTHierr, CCRCFactorErr
 
 CurveObjectFile = open("CoolingCurveObjects.txt","w")
-CurveObjectFile.write(VRFCoolCapFT)
-CurveObjectFile.write(EIRCoolCapFT)
-CurveObjectFile.write(EIRCoolModLowFT)
-CurveObjectFile.write(EIRCoolModHiFT)
-CurveObjectFile.write(CoolingCombCorrFactor)
-CurveObjectFile.write(VRFCoolCapFT)
-CurveObjectFile.write(CPLFFPLR)
+CurveObjectFile.write(CoolingCapModifierFunction(CAPFTlist))
+CurveObjectFile.write(EnergyInputRatioModifierFunction(EIRFTlist))
+CurveObjectFile.write(EnergyInputRatioModifierPartLoadLow(EIRModFTLo))
+CurveObjectFile.write(EnergyInputRatioModifierPartLoadHigh(EIRModFTHi))
+CurveObjectFile.write(CoolingCombinationRatioCorrectionFactor(CCRCFactor))
+CurveObjectFile.write(CPLFFPLR())
+CurveObjectFile.write(CoolingLengthCorrectionFactor())
 
 
 

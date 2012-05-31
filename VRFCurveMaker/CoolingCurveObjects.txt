@@ -70,24 +70,6 @@
     Dimensionless,             !- Input Unit Type for X
     Dimensionless;             !- Output Unit Type
       
-  Curve:Biquadratic,
-    VRFCoolCapFT,               !- Name
-    -1.537422,             !- Coefficient1 Constant
-    0.1987128,             !- Coefficient2 x
-    -0.003349911,             !- Coefficient3 x**2
-    0.01776847,             !- Coefficient3 y
-    -5.67708E-05,             !- Coefficient5 y**2
-    -0.000927354,             !- Coefficient6 x*y
-    15,                      !- Minimum Value of x
-    24,                      !- Maximum Value of x
-    -5,                      !- Minimum Value of y
-    43,                      !- Maximum Value of y
-    ,                        !- Minimum Curve Output
-    ,                        !- Maximum Curve Output
-    Temperature,             !- Input Unit Type for X
-    Temperature,             !- Input Unit Type for Y
-    Dimensionless;           !- Output Unit Type
-      
   CURVE:QUADRATIC,
     VRFCPLFFPLR,             !- Name
     0.85,                    !- Coefficient1 Constant
@@ -100,3 +82,21 @@
     Dimensionless,           !- Input Unit Type for X
     Dimensionless;           !- Output Unit Type
       
+  Curve:Biquadratic,
+    CoolingLengthCorrectionFactor,  !- Name
+    1.0693794,               !- Coefficient1 Constant
+    -0.0014951,              !- Coefficient2 x
+    2.56E-06,                !- Coefficient3 x**2
+    -0.1151104,              !- Coefficient4 y
+    0.0511169,               !- Coefficient5 y**2
+    -0.0004369,              !- Coefficient6 x*y
+    8,                       !- Minimum Value of x
+    175,                     !- Maximum Value of x
+    0.5,                     !- Minimum Value of y
+    1.5,                     !- Maximum Value of y
+    ,                        !- Minimum Curve Output
+    ,                        !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Temperature,             !- Input Unit Type for Y
+    Dimensionless;           !- Output Unit Type
+    

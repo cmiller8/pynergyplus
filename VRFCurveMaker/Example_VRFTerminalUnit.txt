@@ -1,14 +1,7 @@
- ! HVAC:                           The VRF system uses DX cooling and DX heating coils in each of 5 terminal units.
+! HVAC:                           The VRF system uses DX cooling and DX heating coils in each of 5 terminal units.
 !                                 Once all terminal units are simulated, the condenser attached to those terminal
 !                                 units is then simulated. The input is partially autosized.
 !                                 Terminal units are set to provide a fixed amount of outdoor air.
-
- ZoneHVAC:EquipmentList,
-    SPACE1-1 Eq,             !- Name
-    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
-    TU1,                     !- Zone Equipment 1 Name
-    1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
 
   ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
     TU1,                     !- Zone Terminal Unit Name
@@ -34,6 +27,37 @@
     TU1 VRF DX Heating Coil, !- Heating Coil Object Name
     30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
     20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+
+ ZoneHVAC:EquipmentList,
+    SPACE1-1 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    TU1,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+ ZoneHVAC:EquipmentConnections,
+    SPACE1-1,                !- Zone Name
+    SPACE1-1 Eq,             !- Zone Conditioning Equipment List Name
+    SPACE1-1 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    SPACE1-1 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    SPACE1-1 Node,           !- Zone Air Node Name
+    SPACE1-1 Out Node;       !- Zone Return Air Node Name
+
+ NodeList,
+    SPACE1-1 In Nodes,       !- Name
+    TU1 Outlet Node;         !- Node 1 Name
+
+ NodeList,
+    SPACE1-1 Out Nodes,      !- Name
+    TU1 Inlet Node;          !- Node 1 Name
+
+ NodeList,
+    SPACE1-1 In Nodes,       !- Name
+    TU1 Outlet Node;         !- Node 1 Name
+
+ NodeList,
+    SPACE1-1 Out Nodes,      !- Name
+    TU1 Inlet Node;          !- Node 1 Name
 
   OutdoorAir:Mixer,
     TU1 OA Mixer,            !- Name
@@ -62,21 +86,6 @@
     TU1 VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
     VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
     VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
-	
-	
-  Curve:Cubic,
-    VRFTUHeatCapFT,          !- Name
-    -0.390708928227928,      !- Coefficient1 Constant
-    0.261815023760162,       !- Coefficient2 x
-    -0.0130431603151873,     !- Coefficient3 x**2
-    0.000178131745997821,    !- Coefficient4 x**3
-    0.0,                     !- Minimum Value of x
-    50.0,                    !- Maximum Value of x
-    0.5,                     !- Minimum Curve Output
-    1.5,                     !- Maximum Curve Output
-    Temperature,             !- Input Unit Type for X
-    Dimensionless;           !- Output Unit Type
-
 
   COIL:Cooling:DX:VariableRefrigerantFlow,
     TU1 VRF DX Cooling Coil, !- Name
@@ -89,6 +98,19 @@
     TU1 VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
     TU1 VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
     ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  Curve:Cubic,
+    VRFTUHeatCapFT,          !- Name
+    -0.390708928227928,      !- Coefficient1 Constant
+    0.261815023760162,       !- Coefficient2 x
+    -0.0130431603151873,     !- Coefficient3 x**2
+    0.000178131745997821,    !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    50.0,                    !- Maximum Value of x
+    0.5,                     !- Minimum Curve Output
+    1.5,                     !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
 
   Curve:Cubic,
     VRFTUCoolCapFT,          !- Name

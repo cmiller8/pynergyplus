@@ -4,6 +4,7 @@ from pylab import *
 from scipy.optimize import leastsq
 import csv
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d, Axes3D
 from VRFfunctions import *
 from VRF_IDFObjectsTemplates import *
 
@@ -13,6 +14,13 @@ def calcerror(infodict,xdata):
     ss_tot=((xdata-xdata.mean())**2).sum()
     rsquared=1-(ss_err/ss_tot)
     return (rsquared)
+
+def plotcurve(X,Y,Z,Z2):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(X, Y, Z,color='r')
+    ax.scatter(X,Y,Z2)
+    plt.show()
 
 #Creates EIRFT and CAPFT
 def FTCurves(TotalData,RatEnergy):
@@ -47,9 +55,9 @@ def FTCurves(TotalData,RatEnergy):
     EIRFTerr = calcerror(infodict,npPowerRatio)
     #print EIRFTerr
 
-    #Can Plot to Compare Fit
-    #    EIRPredict = FT(npIWB,npODB,EIRFT)
-    #    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
+#    Can Plot to Compare Fit
+    EIRPredict = TwoDimBiquadratic(npIWB,npODB,EIRFT)
+    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
 
     return CAPFT,EIRFT,CAPFTerr,EIRFTerr,IWBmax,IWBmin,ODBmax,ODBmin
 
@@ -95,7 +103,7 @@ def EIRModifier(TotalData,RatedIWB,RatedODB,RatEnergy):
 
     return EIRModFTHi,EIRModFTHierr,EIRModFTLo,EIRModFTLoerr
 
-#Creates Cooling Combination Ratio Correction Factor - Modifies Capacity as a function of CombRatio
+#Creates Heating Combination Ratio Correction Factor - Modifies Capacity as a function of CombRatio
 #Only applies to Comb Ratios above 100%
 def CCRCF(TotalData,RatedIWB,RatedODB):
     CapRatio,CombRatio=[],[]
@@ -108,20 +116,13 @@ def CCRCF(TotalData,RatedIWB,RatedODB):
     npCapRatio=np.array(CapRatio)
     npCombRatio=np.array(CombRatio)
 
-    #Calc Linear Cooling Combination Ratio Correction Factor
+    #Calc Linear Heating Combination Ratio Correction Factor
     p0=[0,0] # initial guesses
     #Least Square Optimization to find parameters
     CCRCFactor,cov,infodict,mesg,ier = leastsq(residualsOneDimLinear,p0,args=(npCapRatio,npCombRatio),full_output=1)
     CCRCFactorErr = calcerror(infodict,npCapRatio)
 
     return CCRCFactor,CCRCFactorErr
-
-def plotcurve(X,Y,Z,Z2):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(X, Y, Z)
-    ax.scatter(X,Y,Z2)
-    plt.show()
 
 #Load TotalData Array from Text file output of CellParser.py
 TotalData = []
@@ -137,28 +138,29 @@ for row in TotalData[1:]:
 #Find Heating Capacity Ratio Modifier Function (CAPFT)
 # and Energy Input Ratio Modifier Function (EIRFT)
 #This script is designed to simplify the process described in:
-#https://securedb.fsec.ucf.edu/pub/pub_show_detail?v_pub_id=4588 by neglecting to created a High AND Low
-#Performance curves.
-RatedCoolingEnergy = 15.3
-CAPFT,EIRFT,CAPFTerr,EIRFTerr,IWBmax,IWBmin,ODBmax,ODBmin = FTCurves(TotalData,RatedCoolingEnergy)
+#https://securedb.fsec.ucf.edu/pub/pub_show_detail?v_pub_id=4588 
+
+#Creating a Hi and Low EIR Curve is required for heating (unlike Heating)
+RatedHeatingEnergy = 15.3
+CAPFT,EIRFT,CAPFTerr,EIRFTerr,IWBmax,IWBmin,ODBmax,ODBmin = FTCurves(TotalData,RatedHeatingEnergy)
 
 #Convert Numpy arrays back to lists for output
 CAPFTlist = (CAPFT.tolist())
 EIRFTlist = (EIRFT.tolist())
 
-#Find Cooling Energy Input Ratio Modifier Functions -
+#Find Heating Energy Input Ratio Modifier Functions -
 #Hi = CombRatio >100, Lo = CombRatio <= 100
 RatedIWB = 20
 RatedODB = 6
 
-EIRModFTHi,EIRFTHierr,EIRModFTLo,EIRModFTLoerr = EIRModifier(TotalData,RatedIWB,RatedODB,RatedCoolingEnergy)
+EIRModFTHi,EIRFTHierr,EIRModFTLo,EIRModFTLoerr = EIRModifier(TotalData,RatedIWB,RatedODB,RatedHeatingEnergy)
 
 #print EIRModFT,EIRFTerr,EIRModFTLo,EIRModFTLoerr
 
 EIRModFTHi = (EIRModFTHi.tolist())
 EIRModFTLo = (EIRModFTLo.tolist())
 
-#Find Cooling Combination Ratio Correction Factor
+#Find Heating Combination Ratio Correction Factor
 RatedCap = 56.5
 
 CCRCFactor, CCRCFactorErr = CCRCF(TotalData,RatedIWB,RatedODB)
@@ -175,7 +177,7 @@ CPLFFPLR = CPLFFPLR()
 #print EIRCoolCapFT
 #print EIRCoolModLowFT
 #print EIRCoolModHiFT
-#print CoolingCombCorrFactor
+#print HeatingCombCorrFactor
 
 #Print Errors
 print CAPFTerr, EIRFTerr, EIRModFTLoerr, EIRFTHierr, CCRCFactorErr
