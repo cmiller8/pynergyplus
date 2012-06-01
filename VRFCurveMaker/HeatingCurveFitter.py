@@ -56,8 +56,8 @@ def FTCurves(TotalData,RatEnergy):
     #print EIRFTerr
 
 #    Can Plot to Compare Fit
-    EIRPredict = TwoDimBiquadratic(npIWB,npODB,EIRFT)
-    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
+#    EIRPredict = TwoDimBiquadratic(npIWB,npODB,EIRFT)
+#    plotcurve(npIWB,npODB,npPowerRatio,EIRPredict)
 
     return CAPFT,EIRFT,CAPFTerr,EIRFTerr,IWBmax,IWBmin,ODBmax,ODBmin
 
@@ -171,7 +171,6 @@ VRFHeatEIRFT = HeatEnergyInputRatioModifierFunction(EIRFTlist)
 HeatEIRLowPLR = HeatEnergyInputRatioModifierPartLoadLow(EIRModFTLo)
 HeatEIRHiPLR = HeatEnergyInputRatioModifierPartLoadHigh(EIRModFTHi)
 HeatingCombCorrFactor = HeatCombinationRatioCorrectionFactor(CCRCFactor)
-CPLFFPLR = CPLFFPLR()
 
 #print VRFCoolCapFT
 #print EIRCoolCapFT
@@ -185,9 +184,12 @@ print CAPFTerr, EIRFTerr, EIRModFTLoerr, EIRFTHierr, CCRCFactorErr
 CurveObjectFile = open("HeatingCurveObjects.txt","w")
 CurveObjectFile.write(VRFHeatCapFT)
 CurveObjectFile.write(VRFHeatEIRFT)
+#CurveObjectFile.write(HeatEnergyInputRatioModifierBoundary())
+#CurveObjectFile.write(HeatEnergyInputRatioModifierFunctionHi())
 CurveObjectFile.write(HeatEIRLowPLR)
 CurveObjectFile.write(HeatEIRHiPLR)
 CurveObjectFile.write(HeatingCombCorrFactor)
+
 
 
 

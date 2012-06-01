@@ -1,0 +1,1206 @@
+  AirConditioner:VariableRefrigerantFlow,
+    VRF Heat Pump Group 1,           !- Heat Pump Name
+    VRFCondAvailSched,       !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    3.02,                  !- Rated Cooling COP {W/W}
+    -5,                      !- Minimum Outdoor Temperature in Cooling Mode {C}
+    43,                      !- Maximum Outdoor Temperature in Cooling Mode {C}
+    VRFCoolCapFT,            !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Cooling Capacity Ratio Boundary Curve Name
+    ,                        !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFCoolEIRFT,            !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Cooling Energy Input Ratio Boundary Curve Name
+    ,                        !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
+    CoolingEIRLowPLR,        !- Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    CoolingEIRHiPLR,         !- Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    CoolingCombRatio,        !- Cooling Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Cooling Part-Load Fraction Correlation Curve Name
+    autosize,                !- Rated Total Heating Capacity {W}
+    3.69,                  !- Rated Heating COP {W/W}
+    -20,                     !- Minimum Outdoor Temperature in Heating Mode {C}
+    20,                      !- Maximum Outdoor Temperature in Heating Mode {C}
+    VRFHeatCapFT,            !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Heating Capacity Ratio Boundary Curve Name
+    ,                        !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFHeatEIRFT,            !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Heating Energy Input Ratio Boundary Curve Name
+    ,                        !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
+    WetBulbTemperature,      !- Heating Performance Curve Outdoor Temperature Type
+    HeatEIRLowPLR,        !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    VRFHeatEIRFTHi,         !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    HeatingCombRatio,        !- Heating Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name
+    0.25,                    !- Minimum Heat Pump Part-Load Ratio
+    OS:ThermalZone 1,               !- Zone Name for Master Thermostat Location
+    MasterThermostatPriority,            !- Master Thermostat Priority Control Type
+    ,                        !- Thermostat Priority Schedule Name
+    VRF Heat Pump TU List Group 1,   !- Zone Terminal Unit List Name
+    No,                      !- Heat Pump Waste Heat Recovery
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Cooling Mode {m}
+    10,                      !- Vertical Height used for Piping Correction Factor {m}
+    CoolingLengthCorrectionFactor,  !- Piping Correction Factor for Length in Cooling Mode Curve Name
+    -0.000386,               !- Piping Correction Factor for Height in Cooling Mode Coefficient
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Heating Mode {m}
+    ,                        !- Piping Correction Factor for Length in Heating Mode Curve Name
+    ,                        !- Piping Correction Factor for Height in Heating Mode Coefficient
+    15,                      !- Crankcase Heater Power per Compressor {W}
+    3,                       !- Number of Compressors
+    0.33,                    !- Ratio of Compressor Size to Total Compressor Capacity
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Crankcase Heater {C}
+    Resistive,               !- Defrost Strategy
+    Timed,                   !- Defrost Control
+    ,                        !- Defrost Energy Input Ratio Modifier Function of Temperature Curve Name
+    ,                        !- Defrost Time Period Fraction
+    0.0000001,               !- Resistive Defrost Heater Capacity {W}
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Defrost Operation {C}
+    AirCooled,               !- Condenser Type
+    MyVRFOANode,             !- Condenser Node Name
+    ,                        !- Evaporative Condenser Effectiveness {dimensionless}
+    ,                        !- Evaporative Condenser Air Flow Rate {m3/s}
+    0,                       !- Evaporative Condenser Pump Rated Power Consumption {W}
+    ,                        !- Supply Water Storage Tank Name
+    0,                       !- Basin Heater Capacity {W/K}
+    ,                        !- Basin Heater Setpoint Temperature {C}
+    ,                        !- Basin Heater Operating Schedule Name
+    Electric;                !- Fuel Type
+    
+  AirConditioner:VariableRefrigerantFlow,
+    VRF Heat Pump Group 2,           !- Heat Pump Name
+    VRFCondAvailSched,       !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    3.02,                  !- Rated Cooling COP {W/W}
+    -5,                      !- Minimum Outdoor Temperature in Cooling Mode {C}
+    43,                      !- Maximum Outdoor Temperature in Cooling Mode {C}
+    VRFCoolCapFT,            !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Cooling Capacity Ratio Boundary Curve Name
+    ,                        !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFCoolEIRFT,            !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Cooling Energy Input Ratio Boundary Curve Name
+    ,                        !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
+    CoolingEIRLowPLR,        !- Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    CoolingEIRHiPLR,         !- Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    CoolingCombRatio,        !- Cooling Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Cooling Part-Load Fraction Correlation Curve Name
+    autosize,                !- Rated Total Heating Capacity {W}
+    3.69,                  !- Rated Heating COP {W/W}
+    -20,                     !- Minimum Outdoor Temperature in Heating Mode {C}
+    20,                      !- Maximum Outdoor Temperature in Heating Mode {C}
+    VRFHeatCapFT,            !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Heating Capacity Ratio Boundary Curve Name
+    ,                        !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
+    VRFHeatEIRFT,            !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    ,                        !- Heating Energy Input Ratio Boundary Curve Name
+    ,                        !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
+    WetBulbTemperature,      !- Heating Performance Curve Outdoor Temperature Type
+    HeatEIRLowPLR,        !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+    VRFHeatEIRFTHi,         !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+    HeatingCombRatio,        !- Heating Combination Ratio Correction Factor Curve Name
+    VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name
+    0.25,                    !- Minimum Heat Pump Part-Load Ratio
+    OS:ThermalZone 7,               !- Zone Name for Master Thermostat Location
+    MasterThermostatPriority,            !- Master Thermostat Priority Control Type
+    ,                        !- Thermostat Priority Schedule Name
+    VRF Heat Pump TU List Group 2,   !- Zone Terminal Unit List Name
+    No,                      !- Heat Pump Waste Heat Recovery
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Cooling Mode {m}
+    10,                      !- Vertical Height used for Piping Correction Factor {m}
+    CoolingLengthCorrectionFactor,  !- Piping Correction Factor for Length in Cooling Mode Curve Name
+    -0.000386,               !- Piping Correction Factor for Height in Cooling Mode Coefficient
+    30,                      !- Equivalent Piping Length used for Piping Correction Factor in Heating Mode {m}
+    ,                        !- Piping Correction Factor for Length in Heating Mode Curve Name
+    ,                        !- Piping Correction Factor for Height in Heating Mode Coefficient
+    15,                      !- Crankcase Heater Power per Compressor {W}
+    3,                       !- Number of Compressors
+    0.33,                    !- Ratio of Compressor Size to Total Compressor Capacity
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Crankcase Heater {C}
+    Resistive,               !- Defrost Strategy
+    Timed,                   !- Defrost Control
+    ,                        !- Defrost Energy Input Ratio Modifier Function of Temperature Curve Name
+    ,                        !- Defrost Time Period Fraction
+    0.0000001,               !- Resistive Defrost Heater Capacity {W}
+    7,                       !- Maximum Outdoor Dry-bulb Temperature for Defrost Operation {C}
+    AirCooled,               !- Condenser Type
+    MyVRFOANode,             !- Condenser Node Name
+    ,                        !- Evaporative Condenser Effectiveness {dimensionless}
+    ,                        !- Evaporative Condenser Air Flow Rate {m3/s}
+    0,                       !- Evaporative Condenser Pump Rated Power Consumption {W}
+    ,                        !- Supply Water Storage Tank Name
+    0,                       !- Basin Heater Capacity {W/K}
+    ,                        !- Basin Heater Setpoint Temperature {C}
+    ,                        !- Basin Heater Operating Schedule Name
+    Electric;                !- Fuel Type
+    
+  OutdoorAir:NodeList,
+    OutsideAirInletNodes;    !- Node or NodeList Name 1
+    
+  NodeList,
+    OutsideAirInletNodes,    !- Name
+    Outside Air Inlet Node 1,
+    Outside Air Inlet Node 2,
+    Outside Air Inlet Node 3,
+    Outside Air Inlet Node 4,
+    Outside Air Inlet Node 5,
+    Outside Air Inlet Node 6,
+    Outside Air Inlet Node 7,
+    Outside Air Inlet Node 8,
+    Outside Air Inlet Node 9,
+    Outside Air Inlet Node 10,
+    Outside Air Inlet Node 11,
+    MyVRFOANode;
+    
+  Schedule:Compact,
+    VRFCondAvailSched,       !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 12:00,1.0,        !- Field 3
+    Until: 13:00,1.0,        !- Field 5
+    Until: 24:00,1.0;        !- Field 7
+    
+  ZoneTerminalUnitList,
+    VRF Heat Pump TU List Group 1,   !- Zone Terminal Unit List Name
+    OS:ThermalZone 4 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 5 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 6 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 7 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 8 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 11 TU;                    !- Zone Terminal Unit Name
+            
+  ZoneTerminalUnitList,
+    VRF Heat Pump TU List Group 2,   !- Zone Terminal Unit List Name
+    OS:ThermalZone 1 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 2 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 3 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 9 TU,                    !- Zone Terminal Unit Name
+    OS:ThermalZone 10 TU;                    !- Zone Terminal Unit Name
+            
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 4 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 4 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 4 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 4 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 4 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 4 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 4 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 4 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 4 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 4,                !- Zone Name
+    OS:ThermalZone 4 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 4 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 4 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 4 Node,           !- Zone Air Node Name
+    OS:ThermalZone 4 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 4 In Nodes,       !- Name
+    OS:ThermalZone 4 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 4 Out Nodes,      !- Name
+    OS:ThermalZone 4 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 4 TU OA Mixer,            !- Name
+    OS:ThermalZone 4 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 4 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 4 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 4 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 4 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 4 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 4 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 4 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 4 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 4 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 4 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 5 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 5 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 5 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 5 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 5 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 5 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 5 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 5 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 5 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 5,                !- Zone Name
+    OS:ThermalZone 5 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 5 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 5 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 5 Node,           !- Zone Air Node Name
+    OS:ThermalZone 5 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 5 In Nodes,       !- Name
+    OS:ThermalZone 5 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 5 Out Nodes,      !- Name
+    OS:ThermalZone 5 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 5 TU OA Mixer,            !- Name
+    OS:ThermalZone 5 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 5 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 5 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 5 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 5 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 5 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 5 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 5 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 5 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 5 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 5 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 6 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 6 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 6 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 6 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 6 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 6 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 6 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 6 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 6 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 6,                !- Zone Name
+    OS:ThermalZone 6 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 6 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 6 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 6 Node,           !- Zone Air Node Name
+    OS:ThermalZone 6 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 6 In Nodes,       !- Name
+    OS:ThermalZone 6 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 6 Out Nodes,      !- Name
+    OS:ThermalZone 6 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 6 TU OA Mixer,            !- Name
+    OS:ThermalZone 6 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 6 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 6 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 6 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 6 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 6 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 6 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 6 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 6 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 6 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 6 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 7 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 7 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 7 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 7 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 7 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 7 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 7 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 7 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 7 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 7,                !- Zone Name
+    OS:ThermalZone 7 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 7 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 7 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 7 Node,           !- Zone Air Node Name
+    OS:ThermalZone 7 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 7 In Nodes,       !- Name
+    OS:ThermalZone 7 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 7 Out Nodes,      !- Name
+    OS:ThermalZone 7 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 7 TU OA Mixer,            !- Name
+    OS:ThermalZone 7 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 7 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 7 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 7 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 7 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 7 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 7 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 7 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 7 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 7 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 7 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 8 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 8 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 8 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 8 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 8 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 8 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 8 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 8 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 8 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 8,                !- Zone Name
+    OS:ThermalZone 8 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 8 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 8 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 8 Node,           !- Zone Air Node Name
+    OS:ThermalZone 8 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 8 In Nodes,       !- Name
+    OS:ThermalZone 8 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 8 Out Nodes,      !- Name
+    OS:ThermalZone 8 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 8 TU OA Mixer,            !- Name
+    OS:ThermalZone 8 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 8 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 8 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 8 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 8 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 8 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 8 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 8 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 8 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 8 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 8 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 11 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 11 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 11 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 11 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 11 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 11 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 11 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 11 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 11 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 11,                !- Zone Name
+    OS:ThermalZone 11 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 11 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 11 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 11 Node,           !- Zone Air Node Name
+    OS:ThermalZone 11 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 11 In Nodes,       !- Name
+    OS:ThermalZone 11 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 11 Out Nodes,      !- Name
+    OS:ThermalZone 11 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 11 TU OA Mixer,            !- Name
+    OS:ThermalZone 11 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 11 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 11 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 11 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 11 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 11 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 11 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 11 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 11 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 11 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 11 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 1 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 1 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 1 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 1 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 1 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 1 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 1 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 1 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 1 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 1,                !- Zone Name
+    OS:ThermalZone 1 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 1 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 1 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 1 Node,           !- Zone Air Node Name
+    OS:ThermalZone 1 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 1 In Nodes,       !- Name
+    OS:ThermalZone 1 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 1 Out Nodes,      !- Name
+    OS:ThermalZone 1 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 1 TU OA Mixer,            !- Name
+    OS:ThermalZone 1 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 1 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 1 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 1 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 1 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 1 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 1 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 1 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 1 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 1 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 1 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 2 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 2 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 2 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 2 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 2 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 2 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 2 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 2 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 2 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 2,                !- Zone Name
+    OS:ThermalZone 2 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 2 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 2 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 2 Node,           !- Zone Air Node Name
+    OS:ThermalZone 2 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 2 In Nodes,       !- Name
+    OS:ThermalZone 2 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 2 Out Nodes,      !- Name
+    OS:ThermalZone 2 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 2 TU OA Mixer,            !- Name
+    OS:ThermalZone 2 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 2 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 2 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 2 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 2 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 2 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 2 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 2 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 2 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 2 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 2 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 3 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 3 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 3 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 3 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 3 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 3 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 3 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 3 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 3 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 3,                !- Zone Name
+    OS:ThermalZone 3 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 3 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 3 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 3 Node,           !- Zone Air Node Name
+    OS:ThermalZone 3 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 3 In Nodes,       !- Name
+    OS:ThermalZone 3 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 3 Out Nodes,      !- Name
+    OS:ThermalZone 3 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 3 TU OA Mixer,            !- Name
+    OS:ThermalZone 3 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 3 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 3 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 3 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 3 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 3 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 3 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 3 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 3 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 3 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 3 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 9 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 9 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 9 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 9 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 9 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 9 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 9 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 9 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 9 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 9,                !- Zone Name
+    OS:ThermalZone 9 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 9 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 9 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 9 Node,           !- Zone Air Node Name
+    OS:ThermalZone 9 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 9 In Nodes,       !- Name
+    OS:ThermalZone 9 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 9 Out Nodes,      !- Name
+    OS:ThermalZone 9 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 9 TU OA Mixer,            !- Name
+    OS:ThermalZone 9 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 9 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 9 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 9 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 9 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 9 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 9 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 9 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 9 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 9 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 9 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
+    OS:ThermalZone 10 TU,                     !- Zone Terminal Unit Name
+    VRFAvailSched,           !- Terminal Unit Availability schedule
+    OS:ThermalZone 10 TU Inlet Node,          !- Terminal Unit Air Inlet Node Name
+    OS:ThermalZone 10 TU Outlet Node,         !- Terminal Unit Air Outlet Node Name
+    autosize,                !- Supply Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
+    autosize,                !- Supply Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Supply Air Flow Rate When No Heating is Needed {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Cooling Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate During Heating Operation {m3/s}
+    autosize,                !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
+    VRFFanSchedule,          !- Supply Air Fan Operating Mode Schedule Name
+    drawthrough,             !- Supply Air Fan placement
+    Fan:ConstantVolume,      !- Supply Air Fan Object Type
+    OS:ThermalZone 10 TU VRF Supply Fan,      !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,        !- Outside Air Mixer Object Type
+    OS:ThermalZone 10 TU OA Mixer,            !- Outside Air Mixer Object Name
+    COIL:Cooling:DX:VariableRefrigerantFlow,  !- Cooling Coil Object Type
+    OS:ThermalZone 10 TU VRF DX Cooling Coil, !- Cooling Coil Object Name
+    COIL:Heating:DX:VariableRefrigerantFlow,  !- Heating Coil Object Type
+    OS:ThermalZone 10 TU VRF DX Heating Coil, !- Heating Coil Object Name
+    30,                      !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
+    20;                      !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
+    
+  ZoneHVAC:EquipmentList,
+    OS:ThermalZone 10 Eq,             !- Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
+    OS:ThermalZone 10 TU,                     !- Zone Equipment 1 Name
+    1,                       !- Zone Equipment 1 Cooling Sequence
+    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+
+  ZoneHVAC:EquipmentConnections,
+    OS:ThermalZone 10,                !- Zone Name
+    OS:ThermalZone 10 Eq,             !- Zone Conditioning Equipment List Name
+    OS:ThermalZone 10 In Nodes,       !- Zone Air Inlet Node or NodeList Name
+    OS:ThermalZone 10 Out Nodes,      !- Zone Air Exhaust Node or NodeList Name
+    OS:ThermalZone 10 Node,           !- Zone Air Node Name
+    OS:ThermalZone 10 Out Node;       !- Zone Return Air Node Name
+
+  NodeList,
+    OS:ThermalZone 10 In Nodes,       !- Name
+    OS:ThermalZone 10 TU Outlet Node;         !- Node 1 Name
+
+  NodeList,
+    OS:ThermalZone 10 Out Nodes,      !- Name
+    OS:ThermalZone 10 TU Inlet Node;          !- Node 1 Name
+
+  OutdoorAir:Mixer,
+    OS:ThermalZone 10 TU OA Mixer,            !- Name
+    OS:ThermalZone 10 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
+    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    OS:ThermalZone 10 TU Inlet Node;          !- Return Air Stream Node Name
+
+  Fan:ConstantVolume,
+    OS:ThermalZone 10 TU VRF Supply Fan,      !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    0.7,                     !- Fan Efficiency
+    600.0,                   !- Pressure Rise {Pa}
+    autosize,                !- Maximum Flow Rate {m3/s}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Airstream Fraction
+    OS:ThermalZone 10 TU VRF DX HCoil Outlet Node,  !- Air Inlet Node Name
+    OS:ThermalZone 10 TU Outlet Node;         !- Air Outlet Node Name
+
+  COIL:Heating:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 10 TU VRF DX Heating Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule
+    autosize,                !- Rated Total Heating Capacity {W}
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    OS:ThermalZone 10 TU VRF DX CCoil Outlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 10 TU VRF DX HCoil Outlet Node,  !- Coil Air Outlet Node
+    VRFTUHeatCapFT,          !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF;         !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+  COIL:Cooling:DX:VariableRefrigerantFlow,
+    OS:ThermalZone 10 TU VRF DX Cooling Coil, !- Name
+    VRFAvailSched,           !- Availability Schedule Name
+    autosize,                !- Rated Total Cooling Capacity {W}
+    autosize,                !- Rated Sensible Heat Ratio
+    autosize,                !- Rated Air Flow Rate {m3/s}
+    VRFTUCoolCapFT,          !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    VRFACCoolCapFFF,         !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    OS:ThermalZone 10 TU VRF DX CCoil Inlet Node,  !- Coil Air Inlet Node
+    OS:ThermalZone 10 TU VRF DX CCoil Outlet Node,  !- Coil Air Outlet Node
+    ;                        !- Name of Water Storage Tank for Condensate Collection
+
+  Curve:Cubic,
+    VRFTUHeatCapFT,          !- Name
+    -0.390708928227928,      !- Coefficient1 Constant
+    0.261815023760162,       !- Coefficient2 x
+    -0.0130431603151873,     !- Coefficient3 x**2
+    0.000178131745997821,    !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    50.0,                    !- Maximum Value of x
+    0.5,                     !- Minimum Curve Output
+    1.5,                     !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Cubic,
+    VRFTUCoolCapFT,          !- Name
+    0.504547273506488,       !- Coefficient1 Constant
+    0.0288891279198444,      !- Coefficient2 x
+    -0.000010819418650677,   !- Coefficient3 x**2
+    0.0000101359395177008,   !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    50.0,                    !- Maximum Value of x
+    0.5,                     !- Minimum Curve Output
+    1.5,                     !- Maximum Curve Output
+    Temperature,             !- Input Unit Type for X
+    Dimensionless;           !- Output Unit Type
+
+  Curve:Quadratic,
+    VRFACCoolCapFFF,         !- Name
+    0.8,                     !- Coefficient1 Constant
+    0.2,                     !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    0.5,                     !- Minimum Value of x
+    1.5;                     !- Maximum Value of x
+
+  Schedule:Compact,
+    VRFFanSchedule,          !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 7:00,1.0,         !- Field 3
+    Until: 18:00,1.0,        !- Field 5
+    Until: 24:00,1.0;        !- Field 7
+
+  Schedule:Compact,
+    VRFAvailSched,           !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 3/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0,        !- Field 3
+    Through: 9/30,           !- Field 5
+    For: WeekDays,           !- Field 6
+    Until: 7:00,1.0,         !- Field 7
+    Until: 17:00,1.0,        !- Field 9
+    Until: 24:00,1.0,        !- Field 11
+    For: SummerDesignDay WinterDesignDay, !- Field 13
+    Until: 24:00,1.0,        !- Field 14
+    For: AllOtherDays,       !- Field 16
+    Until: 24:00,1.0,        !- Field 17
+    Through: 12/31,          !- Field 19
+    For: AllDays,            !- Field 20
+    Until: 24:00,1.0;        !- Field 21
+

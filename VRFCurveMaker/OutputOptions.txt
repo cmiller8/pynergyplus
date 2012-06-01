@@ -1,0 +1,139 @@
+
+OutputControl:Table:Style,
+  HTML;                     ! Column Separator
+
+Output:Table:SummaryReports,
+  AllSummary;               ! Report Name 1
+
+Output:VariableDictionary,
+  IDF,                      ! Key Field
+  Unsorted;                 ! Sort Option
+
+Output:SQLite, SimpleandTabular;
+
+!from VRF 5ZoneModel:
+ Output:Variable,*,Outdoor Dry Bulb,detailed;
+
+  Output:Variable,*,Zone/Sys Air Temperature,detailed;
+
+  Output:Variable,*,Zone Air Relative Humidity,detailed;
+
+  Output:Variable,*,Zone/Sys Sensible Cooling Rate,detailed;
+
+  Output:Variable,*,Zone/Sys Sensible Heating Rate,detailed;
+
+  Output:Variable,*,DX Coil Total Heating Rate,detailed;
+
+  Output:Variable,*,DX Coil Total Cooling Rate,detailed;
+
+  Output:Variable,*,DX Coil Sensible Cooling Rate,detailed;
+
+  Output:Variable,*,DX Coil Latent Cooling Rate,detailed;
+
+  Output:Variable,*,DX Cooling Coil Runtime Fraction,detailed;
+
+  Output:Variable,*,DX Heating Coil Runtime Fraction,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Heating Electric Consumption Rate,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Cooling Electric Consumption Rate,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Heating Electric Consumption,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Cooling Electric Consumption,detailed;
+
+  Output:Variable,*,Fan Electric Power,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Total Cooling Capacity,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Total Heating Capacity,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Part Load Ratio,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Runtime Fraction,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Cycling Ratio,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Operating Mode,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump CrankCase Heater Electric Power,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump CrankCase Heater Electric Consumption,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Electric Defrost Consumption Rate,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Electric Defrost Consumption,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Maximum Terminal Unit Cooling Capacity,detailed;
+
+  Output:Variable,*,Variable Refrigerant Flow Heat Pump Maximum Terminal Unit Heating Capacity,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Cooling Electric Consumption Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Heating Electric Consumption Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Cooling Electric Consumption,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Heating Electric Consumption,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Total Cooling Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Sensible Cooling Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Latent Cooling Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Total Heating Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Sensible Heating Rate,detailed;
+
+  Output:Variable,*,Zone Terminal Unit Latent Heating Rate,detailed;
+
+  Output:Variable,TU1 VRF DX CCoil Inlet Node,System Node Volume Flow Rate Standard Density,detailed;
+
+  Output:Variable,Outside Air Inlet Node 1,System Node Volume Flow Rate Standard Density,detailed;
+
+  Output:Variable,Relief Air Outlet Node 1,System Node Volume Flow Rate Standard Density,detailed;
+
+  Output:Variable,TU1 Inlet Node,System Node Volume Flow Rate Standard Density,detailed;
+
+  Output:Variable,TU1 Outlet Node,System Node Volume Flow Rate Standard Density,detailed;
+
+  Output:Meter,Cooling:Electricity,monthly;
+
+  Output:Meter,Fans:Electricity,monthly;
+
+  Output:Meter,HeatingCoils:EnergyTransfer,monthly;
+
+  Output:Meter,CoolingCoils:EnergyTransfer,monthly;
+
+  Output:Meter,InteriorLights:Electricity,monthly;
+
+  Output:Meter,InteriorEquipment:Electricity,monthly;
+
+  Output:Meter,Cooling:Electricity,runperiod;
+
+  Output:Meter,Fans:Electricity,runperiod;
+
+  Output:Meter,HeatingCoils:EnergyTransfer,runperiod;
+
+  Output:Meter,CoolingCoils:EnergyTransfer,runperiod;
+
+  Output:Meter,InteriorLights:Electricity,runperiod;
+
+  Output:Meter,InteriorEquipment:Electricity,runperiod;
+
+  Output:VariableDictionary,Regular;
+
+  Output:Surfaces:Drawing,dxf;
+
+  Output:Meter:MeterFileOnly,Electricity:Facility,monthly;
+
+  Output:Meter:MeterFileOnly,Electricity:Building,monthly;
+
+  Output:Meter:MeterFileOnly,Electricity:HVAC,monthly;
+
+  Output:Meter:MeterFileOnly,Electricity:Facility,runperiod;
+
+  Output:Meter:MeterFileOnly,Electricity:Building,runperiod;
+
+  Output:Meter:MeterFileOnly,Electricity:HVAC,runperiod;

@@ -27,7 +27,7 @@
     15,                      !- Minimum Value of x
     27,                      !- Maximum Value of x
     -20,                      !- Minimum Value of y
-    15,                      !- Maximum Value of y
+    12,                      !- Maximum Value of y
     ,                        !- Minimum Curve Output
     ,                        !- Maximum Curve Output
     Temperature,             !- Input Unit Type for X

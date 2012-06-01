@@ -2428,7 +2428,7 @@ SimulationControl,
   Yes,                      ! Do Zone Sizing Calculation
   Yes,                      ! Do System Sizing Calculation
   No,                       ! Do Plant Sizing Calculation
-  Yes,                      ! Run Simulation for Sizing Periods
+  No,                      ! Run Simulation for Sizing Periods
   Yes;                      ! Run Simulation for Weather File Run Periods
 
 RunPeriod,
@@ -3436,7 +3436,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 2 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -3725,7 +3725,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 10 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -4118,7 +4118,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 3 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -4463,7 +4463,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 1 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -4766,7 +4766,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 7 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -5079,7 +5079,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 11 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -5299,7 +5299,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 6 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -5634,7 +5634,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 8 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -5885,7 +5885,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 5 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -6190,7 +6190,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 9 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -6458,7 +6458,7 @@ ZoneControl:Thermostat,
 
 Schedule:Compact,
   OS:ThermalZone 4 Thermostat Schedule,  ! Name
-  ,                         ! Schedule Type Limits Name
+  Control Type,                         ! Schedule Type Limits Name
   Through: 12/31,           ! Field 1
   For: AllDays,             ! Field 2
   Until: 24:00,             ! Field 3
@@ -6508,23 +6508,4 @@ ZoneVentilation:DesignFlowRate,
   ,                         ! Velocity Term Coefficient
   ;                         ! Velocity Squared Term Coefficient
 
-Output:Variable,
-  *,                        ! Key Value
-  Zone/Sys Sensible Heating Rate,  ! Variable Name
-  hourly;                   ! Reporting Frequency
-
-Output:Variable,
-  *,                        ! Key Value
-  Zone/Sys Sensible Cooling Rate,  ! Variable Name
-  hourly;                   ! Reporting Frequency
-
-OutputControl:Table:Style,
-  HTML;                     ! Column Separator
-
-Output:Table:SummaryReports,
-  AllSummary;               ! Report Name 1
-
-Output:VariableDictionary,
-  IDF,                      ! Key Field
-  Unsorted;                 ! Sort Option
 

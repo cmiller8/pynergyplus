@@ -128,6 +128,41 @@ def HeatEnergyInputRatioModifierFunction(CoeffArray):
     15,                      !- Minimum Value of x\n\
     27,                      !- Maximum Value of x\n\
     -20,                      !- Minimum Value of y\n\
+    12,                      !- Maximum Value of y\n\
+    ,                        !- Minimum Curve Output\n\
+    ,                        !- Maximum Curve Output\n\
+    Temperature,             !- Input Unit Type for X\n\
+    Temperature,             !- Input Unit Type for Y\n\
+    Dimensionless;           !- Output Unit Type\n\
+      \n"
+
+def HeatEnergyInputRatioModifierBoundary():
+  return "  Curve:Cubic,\n\
+    VRFHeatEIRFTBoundary,    !- Name\n\
+    -7.6000882,              !- Coefficient1 Constant\n\
+    3.05090016,              !- Coefficient2 x\n\
+    -0.1162844,              !- Coefficient3 x**2\n\
+    0.0,                     !- Coefficient4 x**3\n\
+    15,                      !- Minimum Value of x\n\
+    27,                      !- Maximum Value of x\n\
+    -20,                     !- Minimum Curve Output\n\
+    15,                      !- Maximum Curve Output\n\
+    Temperature,             !- Input Unit Type for X\n\
+    Temperature;             !- Output Unit Type\n\
+    \n"
+
+def HeatEnergyInputRatioModifierFunctionHi():
+    return "  Curve:Biquadratic,\n\
+    VRFHeatEIRFTHi,               !- Name\n\
+    2.504005146,             !- Coefficient1 Constant\n\
+    -0.05736767,             !- Coefficient2 x\n\
+    4.07336E-05,             !- Coefficient3 x**2\n\
+    -0.12959669,             !- Coefficient4 y\n\
+    0.00135839,              !- Coefficient5 y**2\n\
+    0.00317047,              !- Coefficient6 x*y\n\
+    15,                      !- Minimum Value of x\n\
+    27,                      !- Maximum Value of x\n\
+    -10,                     !- Minimum Value of y\n\
     15,                      !- Maximum Value of y\n\
     ,                        !- Minimum Curve Output\n\
     ,                        !- Maximum Curve Output\n\
@@ -200,7 +235,7 @@ def CoolingLengthCorrectionFactor():
 
 def AirConditionerVariableRefrigerantFlow(VRFInputArray):
     return  "  AirConditioner:VariableRefrigerantFlow,\n\
-    VRF Heat Pump,           !- Heat Pump Name\n\
+    " + str(VRFInputArray[4]) + ",           !- Heat Pump Name\n\
     VRFCondAvailSched,       !- Availability Schedule Name\n\
     autosize,                !- Rated Total Cooling Capacity {W}\n\
     " + str(VRFInputArray[0]) + ",                  !- Rated Cooling COP {W/W}\n\
@@ -227,13 +262,13 @@ def AirConditionerVariableRefrigerantFlow(VRFInputArray):
     ,                        !- Heating Energy Input Ratio Boundary Curve Name\n\
     ,                        !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name\n\
     WetBulbTemperature,      !- Heating Performance Curve Outdoor Temperature Type\n\
-    HeatingEIRLowPLR,        !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name\n\
-    HeatingEIRHiPLR,         !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name\n\
+    HeatEIRLowPLR,        !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name\n\
+    VRFHeatEIRFTHi,         !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name\n\
     HeatingCombRatio,        !- Heating Combination Ratio Correction Factor Curve Name\n\
     VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name\n\
     0.25,                    !- Minimum Heat Pump Part-Load Ratio\n\
     " + VRFInputArray[2] + ",               !- Zone Name for Master Thermostat Location\n\
-    LoadPriority,            !- Master Thermostat Priority Control Type\n\
+    MasterThermostatPriority,            !- Master Thermostat Priority Control Type\n\
     ,                        !- Thermostat Priority Schedule Name\n\
     " + VRFInputArray[3] + ",   !- Zone Terminal Unit List Name\n\
     No,                      !- Heat Pump Waste Heat Recovery\n\
@@ -296,9 +331,9 @@ def VRFCondAvailSchedule():
     Until: 24:00,1.0;        !- Field 7\n\
     \n"
 
-def TerminalUnits(TUList):
+def TerminalUnits(TUList,TUListName):
     TUListObj = "  ZoneTerminalUnitList,\n\
-    VRF Heat Pump TU List,   !- Zone Terminal Unit List Name\n"
+    " + TUListName + ",   !- Zone Terminal Unit List Name\n"
 
     counter=0
     while counter <= len(TUList):
@@ -363,8 +398,8 @@ def VRFZoneTerminalUnitObject(TU,Zone,TUCount):
   OutdoorAir:Mixer,\n\
     " + TU + " OA Mixer,            !- Name\n\
     " + TU + " VRF DX CCoil Inlet Node,  !- Mixed Air Node Name\n\
-    Outside Air Inlet Node " + str(TUCount) + ",!- Outdoor Air Stream Node Name\n\
-    Relief Air Outlet Node " + str(TUCount) + ",!- Relief Air Stream Node Name\n\
+    Outside Air Inlet Node " + TU[-1] + ",!- Outdoor Air Stream Node Name\n\
+    Relief Air Outlet Node " + TU[-1] + ",!- Relief Air Stream Node Name\n\
     " + TU + " Inlet Node;          !- Return Air Stream Node Name\n\
 \n\
   Fan:ConstantVolume,\n\
