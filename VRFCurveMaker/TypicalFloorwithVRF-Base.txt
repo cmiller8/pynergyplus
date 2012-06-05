@@ -450,7 +450,7 @@ Schedule:Day:Interval,
   Any Number,               ! Schedule Type Limits Name
   No,                       ! Interpolate to Timestep
   24:00,                    ! Time 1 {hh:mm}
-  0;                        ! Value Until Time 1
+  100;                        ! Value Until Time 1
 
 Schedule:Day:Interval,
   Medium Office_ClgSetp Summer Design Day,  ! Name
@@ -2427,7 +2427,7 @@ Schedule:Year,
 SimulationControl,
   Yes,                      ! Do Zone Sizing Calculation
   Yes,                      ! Do System Sizing Calculation
-  No,                       ! Do Plant Sizing Calculation
+  Yes,                       ! Do Plant Sizing Calculation
   No,                      ! Run Simulation for Sizing Periods
   Yes;                      ! Run Simulation for Weather File Run Periods
 

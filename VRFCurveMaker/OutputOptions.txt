@@ -12,6 +12,7 @@ Output:VariableDictionary,
 Output:SQLite, SimpleandTabular;
 
 !from VRF 5ZoneModel:
+
  Output:Variable,*,Outdoor Dry Bulb,detailed;
 
   Output:Variable,*,Zone/Sys Air Temperature,detailed;
@@ -55,14 +56,6 @@ Output:SQLite, SimpleandTabular;
   Output:Variable,*,Variable Refrigerant Flow Heat Pump Cycling Ratio,detailed;
 
   Output:Variable,*,Variable Refrigerant Flow Heat Pump Operating Mode,detailed;
-
-  Output:Variable,*,Variable Refrigerant Flow Heat Pump CrankCase Heater Electric Power,detailed;
-
-  Output:Variable,*,Variable Refrigerant Flow Heat Pump CrankCase Heater Electric Consumption,detailed;
-
-  Output:Variable,*,Variable Refrigerant Flow Heat Pump Electric Defrost Consumption Rate,detailed;
-
-  Output:Variable,*,Variable Refrigerant Flow Heat Pump Electric Defrost Consumption,detailed;
 
   Output:Variable,*,Variable Refrigerant Flow Heat Pump Maximum Terminal Unit Cooling Capacity,detailed;
 
@@ -122,10 +115,6 @@ Output:SQLite, SimpleandTabular;
 
   Output:Meter,InteriorEquipment:Electricity,runperiod;
 
-  Output:VariableDictionary,Regular;
-
-  Output:Surfaces:Drawing,dxf;
-
   Output:Meter:MeterFileOnly,Electricity:Facility,monthly;
 
   Output:Meter:MeterFileOnly,Electricity:Building,monthly;
@@ -137,3 +126,6 @@ Output:SQLite, SimpleandTabular;
   Output:Meter:MeterFileOnly,Electricity:Building,runperiod;
 
   Output:Meter:MeterFileOnly,Electricity:HVAC,runperiod;
+
+!From 5ZoneCoolBeam.idf
+  Output:Variable,*,Total Water Heating Coil Rate,hourly;

@@ -56,13 +56,17 @@ TUCount = 0
 for TU in UnitListGroup1:
     Zone = ThermalZoneListGroup1[TUCount]
     TUCount+=1
-    VRFObjectFile.write(VRFZoneTerminalUnitObject(TU,Zone,TUCount))
+    VRFObjectFile.write(VRFZoneTerminalUnitObject(TU,Zone))
 
 TUCount = 0
 for TU in UnitListGroup2:
     Zone = ThermalZoneListGroup2[TUCount]
     TUCount+=1
-    VRFObjectFile.write(VRFZoneTerminalUnitObject(TU,Zone,TUCount))
+    VRFObjectFile.write(VRFZoneTerminalUnitObject(TU,Zone))
 
 #Create curves and schedules necessary for the terminal units
 VRFObjectFile.write(VRFZoneTerminalUnitMiscObjects())
+
+#Create the heating loop objects
+VRFObjectFile.write(HeatingLoopIterObjects(ThermalZoneListTotal))
+VRFObjectFile.write(HeatingLoopMiscObjects())

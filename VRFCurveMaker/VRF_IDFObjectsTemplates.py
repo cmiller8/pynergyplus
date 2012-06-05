@@ -268,7 +268,7 @@ def AirConditionerVariableRefrigerantFlow(VRFInputArray):
     VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name\n\
     0.25,                    !- Minimum Heat Pump Part-Load Ratio\n\
     " + VRFInputArray[2] + ",               !- Zone Name for Master Thermostat Location\n\
-    MasterThermostatPriority,            !- Master Thermostat Priority Control Type\n\
+    LoadPriority,            !- Master Thermostat Priority Control Type\n\
     ,                        !- Thermostat Priority Schedule Name\n\
     " + VRFInputArray[3] + ",   !- Zone Terminal Unit List Name\n\
     No,                      !- Heat Pump Waste Heat Recovery\n\
@@ -346,7 +346,7 @@ def TerminalUnits(TUList,TUListName):
 
     return TUListObj
 
-def VRFZoneTerminalUnitObject(TU,Zone,TUCount):
+def VRFZoneTerminalUnitObject(TU,Zone):
     return "  ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,\n\
     "+ TU +",                     !- Zone Terminal Unit Name\n\
     VRFAvailSched,           !- Terminal Unit Availability schedule\n\
@@ -377,7 +377,29 @@ def VRFZoneTerminalUnitObject(TU,Zone,TUCount):
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type\n\
     " + TU + ",                     !- Zone Equipment 1 Name\n\
     1,                       !- Zone Equipment 1 Cooling Sequence\n\
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence\n\
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence\n\
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type\n\
+    " + Zone + " HW Coil,        !- Zone Equipment 2 Name\n\
+    2,                       !- Zone Equipment 2 Cooling Sequence\n\
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence\n\
+    \n\
+  ZoneHVAC:Baseboard:Convective:Water,\n\
+    " + Zone + " HW Coil,        !- Name\n\
+    BaseboardCoilAvailSched,    !- Availability Schedule Name\n\
+    " + Zone + " HW Coil Water In Node,  !- Inlet Node Name\n\
+    " + Zone + " HW Coil Water Out Node,  !- Outlet Node Name\n\
+    autosize,                !- U-Factor Times Area Value {W/K}\n\
+    autosize;                !- Maximum Water Flow Rate {m3/s}\n\
+\n\
+  Branch,\n\
+    " + Zone + " HW Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type\n\
+    " + Zone + " HW Coil,      !- Component 1 Name\n\
+    " + Zone + " HW Coil Water In Node,  !- Component 1 Inlet Node Name\n\
+    " + Zone + " HW Coil Water Out Node,  !- Component 1 Outlet Node Name\n\
+    ACTIVE;                  !- Component 1 Branch Control Type\n\
 \n\
   ZoneHVAC:EquipmentConnections,\n\
     " + Zone + ",                !- Zone Name\n\
@@ -398,8 +420,8 @@ def VRFZoneTerminalUnitObject(TU,Zone,TUCount):
   OutdoorAir:Mixer,\n\
     " + TU + " OA Mixer,            !- Name\n\
     " + TU + " VRF DX CCoil Inlet Node,  !- Mixed Air Node Name\n\
-    Outside Air Inlet Node " + TU[-1] + ",!- Outdoor Air Stream Node Name\n\
-    Relief Air Outlet Node " + TU[-1] + ",!- Relief Air Stream Node Name\n\
+    Outside Air Inlet Node " + Zone[-1:] + ",!- Outdoor Air Stream Node Name\n\
+    Relief Air Outlet Node " + Zone[-1:] + ",!- Relief Air Stream Node Name\n\
     " + TU + " Inlet Node;          !- Return Air Stream Node Name\n\
 \n\
   Fan:ConstantVolume,\n\
@@ -499,3 +521,269 @@ def VRFZoneTerminalUnitMiscObjects():
     For: AllDays,            !- Field 20\n\
     Until: 24:00,1.0;        !- Field 21\n\
 \n"
+
+def HeatingLoopIterObjects(Zonelist):
+
+    ZoneHeatListObj = "  BranchList,\n\
+    Heating Demand Side Branches,  !- Name\n\
+    Heating Demand Inlet Branch,  !- Branch 1 Name\n"
+
+    counter=0
+    while counter < len(Zonelist):
+        ZoneHeatListObj += "    " + Zonelist[counter] + " HW Branch,  !- Branch Name\n"
+        counter+=1
+
+    ZoneHeatListObj += "    Heating Demand Bypass Branch,  !- Branch 8 Name\n\
+    Heating Demand Outlet Branch;  !- Branch 9 Name\n\
+    \n\
+    Connector:Splitter,\n\
+    Heating Demand Splitter, !- Name\n\
+    Heating Demand Inlet Branch,  !- Inlet Branch Name\n"
+
+    counter=0
+    while counter < len(Zonelist):
+        ZoneHeatListObj += "    " + Zonelist[counter] + " HW Branch,  !- Branch Name\n"
+        counter+=1
+
+    ZoneHeatListObj += "    Heating Demand Bypass Branch;  !- Outlet Branch 7 Name\n\
+    \n\
+    Connector:Mixer,\n\
+    Heating Demand Mixer,    !- Name\n\
+    Heating Demand Outlet Branch,  !- Outlet Branch Name\n"
+
+    counter=0
+    while counter < len(Zonelist):
+        ZoneHeatListObj += "    " + Zonelist[counter] + " HW Branch,  !- Branch Name\n"
+        counter+=1
+
+    ZoneHeatListObj += "    Heating Demand Bypass Branch;  !- Inlet Branch 7 Name\n\
+    \n"
+
+    return ZoneHeatListObj
+
+def HeatingLoopMiscObjects():
+    return "    NodeList,\n\
+    Hot Water Loop Setpoint Node List,  !- Name\n\
+    HW Supply Outlet Node;   !- Node 1 Name\n\
+\n\
+  BranchList,\n\
+    Heating Supply Side Branches,  !- Name\n\
+    Heating Supply Inlet Branch,  !- Branch 1 Name\n\
+    Heating Purchased Hot Water Branch,  !- Branch 2 Name\n\
+    Heating Supply Bypass Branch,  !- Branch 3 Name\n\
+    Heating Supply Outlet Branch;  !- Branch 4 Name\n\
+\n\
+  Connector:Splitter,\n\
+    Heating Supply Splitter, !- Name\n\
+    Heating Supply Inlet Branch,  !- Inlet Branch Name\n\
+    Heating Purchased Hot Water Branch,  !- Outlet Branch 1 Name\n\
+    Heating Supply Bypass Branch;  !- Outlet Branch 2 Name\n\
+\n\
+  Connector:Mixer,\n\
+    Heating Supply Mixer,    !- Name\n\
+    Heating Supply Outlet Branch,  !- Outlet Branch Name\n\
+    Heating Purchased Hot Water Branch,  !- Inlet Branch 1 Name\n\
+    Heating Supply Bypass Branch;  !- Inlet Branch 2 Name\n\
+    \n\
+  ConnectorList,\n\
+    Heating Supply Side Connectors,  !- Name\n\
+    Connector:Splitter,      !- Connector 1 Object Type\n\
+    Heating Supply Splitter, !- Connector 1 Name\n\
+    Connector:Mixer,         !- Connector 2 Object Type\n\
+    Heating Supply Mixer;    !- Connector 2 Name\n\
+\n\
+  ConnectorList,\n\
+    Heating Demand Side Connectors,  !- Name\n\
+    Connector:Splitter,      !- Connector 1 Object Type\n\
+    Heating Demand Splitter, !- Connector 1 Name\n\
+    Connector:Mixer,         !- Connector 2 Object Type\n\
+    Heating Demand Mixer;    !- Connector 2 Name\n\
+    \n\
+  Branch,\n\
+    Heating Supply Inlet Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pump:VariableSpeed,      !- Component 1 Object Type\n\
+    HW Circ Pump,            !- Component 1 Name\n\
+    HW Supply Inlet Node,    !- Component 1 Inlet Node Name\n\
+    HW Pump Outlet Node,     !- Component 1 Outlet Node Name\n\
+    ACTIVE;                  !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Purchased Hot Water Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    DistrictHeating,         !- Component 1 Object Type\n\
+    Purchased Heating,       !- Component 1 Name\n\
+    Purchased Heat Inlet Node,  !- Component 1 Inlet Node Name\n\
+    Purchased Heat Outlet Node,  !- Component 1 Outlet Node Name\n\
+    ACTIVE;                  !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Supply Bypass Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pipe:Adiabatic,          !- Component 1 Object Type\n\
+    Heating Supply Side Bypass,  !- Component 1 Name\n\
+    Heating Supply Bypass Inlet Node,  !- Component 1 Inlet Node Name\n\
+    Heating Supply Bypass Outlet Node,  !- Component 1 Outlet Node Name\n\
+    BYPASS;                  !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Supply Outlet Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pipe:Adiabatic,          !- Component 1 Object Type\n\
+    Heating Supply Outlet,   !- Component 1 Name\n\
+    Heating Supply Exit Pipe Inlet Node,  !- Component 1 Inlet Node Name\n\
+    HW Supply Outlet Node,   !- Component 1 Outlet Node Name\n\
+    PASSIVE;                 !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Demand Inlet Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pipe:Adiabatic,          !- Component 1 Object Type\n\
+    Heating Demand Inlet Pipe,  !- Component 1 Name\n\
+    HW Demand Inlet Node,    !- Component 1 Inlet Node Name\n\
+    HW Demand Entrance Pipe Outlet Node,  !- Component 1 Outlet Node Name\n\
+    PASSIVE;                 !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Demand Outlet Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pipe:Adiabatic,          !- Component 1 Object Type\n\
+    Heating Demand Outlet Pipe,  !- Component 1 Name\n\
+    HW Demand Exit Pipe Inlet Node,  !- Component 1 Inlet Node Name\n\
+    HW Demand Outlet Node,   !- Component 1 Outlet Node Name\n\
+    PASSIVE;                 !- Component 1 Branch Control Type\n\
+\n\
+  Branch,\n\
+    Heating Demand Bypass Branch,  !- Name\n\
+    0,                       !- Maximum Flow Rate {m3/s}\n\
+    ,                        !- Pressure Drop Curve Name\n\
+    Pipe:Adiabatic,          !- Component 1 Object Type\n\
+    Heating Demand Bypass,   !- Component 1 Name\n\
+    Heating Demand Bypass Inlet Node,  !- Component 1 Inlet Node Name\n\
+    Heating Demand Bypass Outlet Node,  !- Component 1 Outlet Node Name\n\
+    BYPASS;                  !- Component 1 Branch Control Type\n\
+    \n\
+  Pipe:Adiabatic,\n\
+    Heating Supply Side Bypass,  !- Name\n\
+    Heating Supply Bypass Inlet Node,  !- Inlet Node Name\n\
+    Heating Supply Bypass Outlet Node;  !- Outlet Node Name\n\
+\n\
+  Pipe:Adiabatic,\n\
+    Heating Supply Outlet,   !- Name\n\
+    Heating Supply Exit Pipe Inlet Node,  !- Inlet Node Name\n\
+    HW Supply Outlet Node;   !- Outlet Node Name\n\
+\n\
+  Pipe:Adiabatic,\n\
+    Heating Demand Inlet Pipe,  !- Name\n\
+    HW Demand Inlet Node,    !- Inlet Node Name\n\
+    HW Demand Entrance Pipe Outlet Node;  !- Outlet Node Name\n\
+\n\
+  Pipe:Adiabatic,\n\
+    Heating Demand Outlet Pipe,  !- Name\n\
+    HW Demand Exit Pipe Inlet Node,  !- Inlet Node Name\n\
+    HW Demand Outlet Node;   !- Outlet Node Name\n\
+\n\
+  Pipe:Adiabatic,\n\
+    Heating Demand Bypass,   !- Name\n\
+    Heating Demand Bypass Inlet Node,  !- Inlet Node Name\n\
+    Heating Demand Bypass Outlet Node;  !- Outlet Node Name\n\
+    \n\
+  PlantLoop,\n\
+    Hot Water Loop,          !- Name\n\
+    Water,                   !- Fluid Type\n\
+    ,                        !- User Defined Fluid Type\n\
+    Hot Loop Operation,      !- Plant Equipment Operation Scheme Name\n\
+    HW Supply Outlet Node,   !- Loop Temperature Setpoint Node Name\n\
+    100,                     !- Maximum Loop Temperature {C}\n\
+    10,                      !- Minimum Loop Temperature {C}\n\
+    0.0019,                  !- Maximum Loop Flow Rate {m3/s}\n\
+    0.0,                     !- Minimum Loop Flow Rate {m3/s}\n\
+    autocalculate,           !- Plant Loop Volume {m3}\n\
+    HW Supply Inlet Node,    !- Plant Side Inlet Node Name\n\
+    HW Supply Outlet Node,   !- Plant Side Outlet Node Name\n\
+    Heating Supply Side Branches,  !- Plant Side Branch List Name\n\
+    Heating Supply Side Connectors,  !- Plant Side Connector List Name\n\
+    HW Demand Inlet Node,    !- Demand Side Inlet Node Name\n\
+    HW Demand Outlet Node,   !- Demand Side Outlet Node Name\n\
+    Heating Demand Side Branches,  !- Demand Side Branch List Name\n\
+    Heating Demand Side Connectors,  !- Demand Side Connector List Name\n\
+    Optimal;                 !- Load Distribution Scheme\n\
+    \n\
+  PlantEquipmentOperationSchemes,\n\
+    Hot Loop Operation,      !- Name\n\
+    PlantEquipmentOperation:HeatingLoad,  !- Control Scheme 1 Object Type\n\
+    Purchased Only,          !- Control Scheme 1 Name\n\
+    PlantOnSched;            !- Control Scheme 1 Schedule Name\n\
+    \n\
+  PlantEquipmentOperation:HeatingLoad,\n\
+    Purchased Only,          !- Name\n\
+    0,                       !- Load Range 1 Lower Limit {W}\n\
+    1000000,                 !- Load Range 1 Upper Limit {W}\n\
+    heating plant;           !- Range 1 Equipment List Name\n\
+\n\
+  PlantEquipmentList,\n\
+    heating plant,           !- Name\n\
+    DistrictHeating,         !- Equipment 1 Object Type\n\
+    Purchased Heating;       !- Equipment 1 Name\n\
+    \n\
+  SetpointManager:Scheduled,\n\
+    Hot Water Loop Setpoint Manager,  !- Name\n\
+    Temperature,             !- Control Variable\n\
+    HW Loop Temp Schedule,   !- Schedule Name\n\
+    Hot Water Loop Setpoint Node List;  !- Setpoint Node or NodeList Name\n\
+    \n\
+  Pump:VariableSpeed,\n\
+    HW Circ Pump,            !- Name\n\
+    HW Supply Inlet Node,    !- Inlet Node Name\n\
+    HW Pump Outlet Node,     !- Outlet Node Name\n\
+    0.0013,                  !- Rated Flow Rate {m3/s}\n\
+    300000,                  !- Rated Pump Head {Pa}\n\
+    560,                     !- Rated Power Consumption {W}\n\
+    0.87,                    !- Motor Efficiency\n\
+    0.0,                     !- Fraction of Motor Inefficiencies to Fluid Stream\n\
+    0,                       !- Coefficient 1 of the Part Load Performance Curve\n\
+    1,                       !- Coefficient 2 of the Part Load Performance Curve\n\
+    0,                       !- Coefficient 3 of the Part Load Performance Curve\n\
+    0,                       !- Coefficient 4 of the Part Load Performance Curve\n\
+    0,                       !- Minimum Flow Rate {m3/s}\n\
+    INTERMITTENT;            !- Pump Control Type\n\
+    \n\
+  DistrictHeating,\n\
+    Purchased Heating,       !- Name\n\
+    Purchased Heat Inlet Node,  !- Hot Water Inlet Node Name\n\
+    Purchased Heat Outlet Node,  !- Hot Water Outlet Node Name\n\
+    1000000;                 !- Nominal Capacity {W}\n\
+    \n\
+  Schedule:Compact,\n\
+    HW Loop Temp Schedule,   !- Name\n\
+    Temperature,             !- Schedule Type Limits Name\n\
+    Through: 12/31,          !- Field 1\n\
+    For: AllDays,            !- Field 2\n\
+    Until: 24:00,60;         !- Field 3\n\
+    \n\
+  Schedule:Compact,\n\
+    PlantOnSched,            !- Name\n\
+    Fraction,                !- Schedule Type Limits Name\n\
+    Through: 12/31,          !- Field 1\n\
+    For: AllDays,            !- Field 2\n\
+    Until: 24:00,1.0;        !- Field 3\n\
+    \n\
+Schedule:Compact,\n\
+    BaseboardCoilAvailSched,    !- Name\n\
+    Fraction,                !- Schedule Type Limits Name\n\
+    Through: 12/31,           !- Field 1\n\
+    For: AllDays,            !- Field 2\n\
+    Until: 24:00,1.0;        !- Field 3\n\
+    \n\
+Sizing:Plant,\n\
+    Hot Water Loop,          !- Plant or Condenser Loop Name\n\
+    heating,                 !- Loop Type\n\
+    82.,                     !- Design Loop Exit Temperature {C}\n\
+    11;                      !- Loop Design Temperature Difference {deltaC}\n\
+    \n"

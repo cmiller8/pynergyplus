@@ -32,7 +32,7 @@
     VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name
     0.25,                    !- Minimum Heat Pump Part-Load Ratio
     OS:ThermalZone 1,               !- Zone Name for Master Thermostat Location
-    MasterThermostatPriority,            !- Master Thermostat Priority Control Type
+    LoadPriority,            !- Master Thermostat Priority Control Type
     ,                        !- Thermostat Priority Schedule Name
     VRF Heat Pump TU List Group 1,   !- Zone Terminal Unit List Name
     No,                      !- Heat Pump Waste Heat Recovery
@@ -98,7 +98,7 @@
     VRFCPLFFPLR,             !- Heating Part-Load Fraction Correlation Curve Name
     0.25,                    !- Minimum Heat Pump Part-Load Ratio
     OS:ThermalZone 7,               !- Zone Name for Master Thermostat Location
-    MasterThermostatPriority,            !- Master Thermostat Priority Control Type
+    LoadPriority,            !- Master Thermostat Priority Control Type
     ,                        !- Thermostat Priority Schedule Name
     VRF Heat Pump TU List Group 2,   !- Zone Terminal Unit List Name
     No,                      !- Heat Pump Waste Heat Recovery
@@ -204,7 +204,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 4 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 4 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 4 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 4 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 4 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 4 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 4 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 4 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 4 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 4,                !- Zone Name
@@ -225,8 +247,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 4 TU OA Mixer,            !- Name
     OS:ThermalZone 4 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 4,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 4,!- Relief Air Stream Node Name
     OS:ThermalZone 4 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -292,7 +314,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 5 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 5 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 5 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 5 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 5 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 5 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 5 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 5 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 5 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 5,                !- Zone Name
@@ -313,8 +357,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 5 TU OA Mixer,            !- Name
     OS:ThermalZone 5 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 5,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 5,!- Relief Air Stream Node Name
     OS:ThermalZone 5 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -380,7 +424,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 6 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 6 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 6 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 6 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 6 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 6 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 6 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 6 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 6 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 6,                !- Zone Name
@@ -401,8 +467,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 6 TU OA Mixer,            !- Name
     OS:ThermalZone 6 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 6,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 6,!- Relief Air Stream Node Name
     OS:ThermalZone 6 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -468,7 +534,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 7 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 7 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 7 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 7 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 7 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 7 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 7 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 7 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 7 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 7,                !- Zone Name
@@ -489,8 +577,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 7 TU OA Mixer,            !- Name
     OS:ThermalZone 7 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 7,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 7,!- Relief Air Stream Node Name
     OS:ThermalZone 7 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -556,7 +644,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 8 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 8 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 8 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 8 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 8 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 8 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 8 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 8 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 8 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 8,                !- Zone Name
@@ -577,8 +687,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 8 TU OA Mixer,            !- Name
     OS:ThermalZone 8 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 8,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 8,!- Relief Air Stream Node Name
     OS:ThermalZone 8 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -644,7 +754,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 11 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 11 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 11 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 11 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 11 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 11 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 11 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 11 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 11 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 11,                !- Zone Name
@@ -665,8 +797,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 11 TU OA Mixer,            !- Name
     OS:ThermalZone 11 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 1,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 1,!- Relief Air Stream Node Name
     OS:ThermalZone 11 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -732,7 +864,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 1 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 1 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 1 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 1 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 1 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 1 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 1 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 1 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 1 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 1,                !- Zone Name
@@ -753,8 +907,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 1 TU OA Mixer,            !- Name
     OS:ThermalZone 1 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 1,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 1,!- Relief Air Stream Node Name
     OS:ThermalZone 1 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -820,7 +974,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 2 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 2 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 2 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 2 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 2 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 2 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 2 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 2 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 2 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 2,                !- Zone Name
@@ -841,8 +1017,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 2 TU OA Mixer,            !- Name
     OS:ThermalZone 2 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 2,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 2,!- Relief Air Stream Node Name
     OS:ThermalZone 2 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -908,7 +1084,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 3 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 3 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 3 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 3 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 3 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 3 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 3 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 3 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 3 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 3,                !- Zone Name
@@ -929,8 +1127,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 3 TU OA Mixer,            !- Name
     OS:ThermalZone 3 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 3,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 3,!- Relief Air Stream Node Name
     OS:ThermalZone 3 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -996,7 +1194,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 9 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 9 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 9 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 9 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 9 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 9 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 9 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 9 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 9 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 9,                !- Zone Name
@@ -1017,8 +1237,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 9 TU OA Mixer,            !- Name
     OS:ThermalZone 9 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 9,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 9,!- Relief Air Stream Node Name
     OS:ThermalZone 9 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -1084,7 +1304,29 @@
     ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,  !- Zone Equipment 1 Object Type
     OS:ThermalZone 10 TU,                     !- Zone Equipment 1 Name
     1,                       !- Zone Equipment 1 Cooling Sequence
-    1;                       !- Zone Equipment 1 Heating or No-Load Sequence
+    1,                       !- Zone Equipment 1 Heating or No-Load Sequence
+    ZoneHVAC:Baseboard:Convective:Water,  !- Zone Equipment 2 Object Type
+    OS:ThermalZone 10 HW Coil,        !- Zone Equipment 2 Name
+    2,                       !- Zone Equipment 2 Cooling Sequence
+    2;                       !- Zone Equipment 2 Heating or No-Load Sequence
+    
+  ZoneHVAC:Baseboard:Convective:Water,
+    OS:ThermalZone 10 HW Coil,        !- Name
+    BaseboardCoilAvailSched,    !- Availability Schedule Name
+    OS:ThermalZone 10 HW Coil Water In Node,  !- Inlet Node Name
+    OS:ThermalZone 10 HW Coil Water Out Node,  !- Outlet Node Name
+    autosize,                !- U-Factor Times Area Value {W/K}
+    autosize;                !- Maximum Water Flow Rate {m3/s}
+
+  Branch,
+    OS:ThermalZone 10 HW Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    ZoneHVAC:Baseboard:Convective:Water,      !- Component 1 Object Type
+    OS:ThermalZone 10 HW Coil,      !- Component 1 Name
+    OS:ThermalZone 10 HW Coil Water In Node,  !- Component 1 Inlet Node Name
+    OS:ThermalZone 10 HW Coil Water Out Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
 
   ZoneHVAC:EquipmentConnections,
     OS:ThermalZone 10,                !- Zone Name
@@ -1105,8 +1347,8 @@
   OutdoorAir:Mixer,
     OS:ThermalZone 10 TU OA Mixer,            !- Name
     OS:ThermalZone 10 TU VRF DX CCoil Inlet Node,  !- Mixed Air Node Name
-    Outside Air Inlet Node U,!- Outdoor Air Stream Node Name
-    Relief Air Outlet Node U,!- Relief Air Stream Node Name
+    Outside Air Inlet Node 0,!- Outdoor Air Stream Node Name
+    Relief Air Outlet Node 0,!- Relief Air Stream Node Name
     OS:ThermalZone 10 TU Inlet Node;          !- Return Air Stream Node Name
 
   Fan:ConstantVolume,
@@ -1204,3 +1446,277 @@
     For: AllDays,            !- Field 20
     Until: 24:00,1.0;        !- Field 21
 
+  BranchList,
+    Heating Demand Side Branches,  !- Name
+    Heating Demand Inlet Branch,  !- Branch 1 Name
+    OS:ThermalZone 4 HW Branch,  !- Branch Name
+    OS:ThermalZone 5 HW Branch,  !- Branch Name
+    OS:ThermalZone 6 HW Branch,  !- Branch Name
+    OS:ThermalZone 7 HW Branch,  !- Branch Name
+    OS:ThermalZone 8 HW Branch,  !- Branch Name
+    OS:ThermalZone 11 HW Branch,  !- Branch Name
+    OS:ThermalZone 1 HW Branch,  !- Branch Name
+    OS:ThermalZone 2 HW Branch,  !- Branch Name
+    OS:ThermalZone 3 HW Branch,  !- Branch Name
+    OS:ThermalZone 9 HW Branch,  !- Branch Name
+    OS:ThermalZone 10 HW Branch,  !- Branch Name
+    Heating Demand Bypass Branch,  !- Branch 8 Name
+    Heating Demand Outlet Branch;  !- Branch 9 Name
+    
+    Connector:Splitter,
+    Heating Demand Splitter, !- Name
+    Heating Demand Inlet Branch,  !- Inlet Branch Name
+    OS:ThermalZone 4 HW Branch,  !- Branch Name
+    OS:ThermalZone 5 HW Branch,  !- Branch Name
+    OS:ThermalZone 6 HW Branch,  !- Branch Name
+    OS:ThermalZone 7 HW Branch,  !- Branch Name
+    OS:ThermalZone 8 HW Branch,  !- Branch Name
+    OS:ThermalZone 11 HW Branch,  !- Branch Name
+    OS:ThermalZone 1 HW Branch,  !- Branch Name
+    OS:ThermalZone 2 HW Branch,  !- Branch Name
+    OS:ThermalZone 3 HW Branch,  !- Branch Name
+    OS:ThermalZone 9 HW Branch,  !- Branch Name
+    OS:ThermalZone 10 HW Branch,  !- Branch Name
+    Heating Demand Bypass Branch;  !- Outlet Branch 7 Name
+    
+    Connector:Mixer,
+    Heating Demand Mixer,    !- Name
+    Heating Demand Outlet Branch,  !- Outlet Branch Name
+    OS:ThermalZone 4 HW Branch,  !- Branch Name
+    OS:ThermalZone 5 HW Branch,  !- Branch Name
+    OS:ThermalZone 6 HW Branch,  !- Branch Name
+    OS:ThermalZone 7 HW Branch,  !- Branch Name
+    OS:ThermalZone 8 HW Branch,  !- Branch Name
+    OS:ThermalZone 11 HW Branch,  !- Branch Name
+    OS:ThermalZone 1 HW Branch,  !- Branch Name
+    OS:ThermalZone 2 HW Branch,  !- Branch Name
+    OS:ThermalZone 3 HW Branch,  !- Branch Name
+    OS:ThermalZone 9 HW Branch,  !- Branch Name
+    OS:ThermalZone 10 HW Branch,  !- Branch Name
+    Heating Demand Bypass Branch;  !- Inlet Branch 7 Name
+    
+    NodeList,
+    Hot Water Loop Setpoint Node List,  !- Name
+    HW Supply Outlet Node;   !- Node 1 Name
+
+  BranchList,
+    Heating Supply Side Branches,  !- Name
+    Heating Supply Inlet Branch,  !- Branch 1 Name
+    Heating Purchased Hot Water Branch,  !- Branch 2 Name
+    Heating Supply Bypass Branch,  !- Branch 3 Name
+    Heating Supply Outlet Branch;  !- Branch 4 Name
+
+  Connector:Splitter,
+    Heating Supply Splitter, !- Name
+    Heating Supply Inlet Branch,  !- Inlet Branch Name
+    Heating Purchased Hot Water Branch,  !- Outlet Branch 1 Name
+    Heating Supply Bypass Branch;  !- Outlet Branch 2 Name
+
+  Connector:Mixer,
+    Heating Supply Mixer,    !- Name
+    Heating Supply Outlet Branch,  !- Outlet Branch Name
+    Heating Purchased Hot Water Branch,  !- Inlet Branch 1 Name
+    Heating Supply Bypass Branch;  !- Inlet Branch 2 Name
+    
+  ConnectorList,
+    Heating Supply Side Connectors,  !- Name
+    Connector:Splitter,      !- Connector 1 Object Type
+    Heating Supply Splitter, !- Connector 1 Name
+    Connector:Mixer,         !- Connector 2 Object Type
+    Heating Supply Mixer;    !- Connector 2 Name
+
+  ConnectorList,
+    Heating Demand Side Connectors,  !- Name
+    Connector:Splitter,      !- Connector 1 Object Type
+    Heating Demand Splitter, !- Connector 1 Name
+    Connector:Mixer,         !- Connector 2 Object Type
+    Heating Demand Mixer;    !- Connector 2 Name
+    
+  Branch,
+    Heating Supply Inlet Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pump:VariableSpeed,      !- Component 1 Object Type
+    HW Circ Pump,            !- Component 1 Name
+    HW Supply Inlet Node,    !- Component 1 Inlet Node Name
+    HW Pump Outlet Node,     !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Purchased Hot Water Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    DistrictHeating,         !- Component 1 Object Type
+    Purchased Heating,       !- Component 1 Name
+    Purchased Heat Inlet Node,  !- Component 1 Inlet Node Name
+    Purchased Heat Outlet Node,  !- Component 1 Outlet Node Name
+    ACTIVE;                  !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Supply Bypass Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pipe:Adiabatic,          !- Component 1 Object Type
+    Heating Supply Side Bypass,  !- Component 1 Name
+    Heating Supply Bypass Inlet Node,  !- Component 1 Inlet Node Name
+    Heating Supply Bypass Outlet Node,  !- Component 1 Outlet Node Name
+    BYPASS;                  !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Supply Outlet Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pipe:Adiabatic,          !- Component 1 Object Type
+    Heating Supply Outlet,   !- Component 1 Name
+    Heating Supply Exit Pipe Inlet Node,  !- Component 1 Inlet Node Name
+    HW Supply Outlet Node,   !- Component 1 Outlet Node Name
+    PASSIVE;                 !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Demand Inlet Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pipe:Adiabatic,          !- Component 1 Object Type
+    Heating Demand Inlet Pipe,  !- Component 1 Name
+    HW Demand Inlet Node,    !- Component 1 Inlet Node Name
+    HW Demand Entrance Pipe Outlet Node,  !- Component 1 Outlet Node Name
+    PASSIVE;                 !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Demand Outlet Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pipe:Adiabatic,          !- Component 1 Object Type
+    Heating Demand Outlet Pipe,  !- Component 1 Name
+    HW Demand Exit Pipe Inlet Node,  !- Component 1 Inlet Node Name
+    HW Demand Outlet Node,   !- Component 1 Outlet Node Name
+    PASSIVE;                 !- Component 1 Branch Control Type
+
+  Branch,
+    Heating Demand Bypass Branch,  !- Name
+    0,                       !- Maximum Flow Rate {m3/s}
+    ,                        !- Pressure Drop Curve Name
+    Pipe:Adiabatic,          !- Component 1 Object Type
+    Heating Demand Bypass,   !- Component 1 Name
+    Heating Demand Bypass Inlet Node,  !- Component 1 Inlet Node Name
+    Heating Demand Bypass Outlet Node,  !- Component 1 Outlet Node Name
+    BYPASS;                  !- Component 1 Branch Control Type
+    
+  Pipe:Adiabatic,
+    Heating Supply Side Bypass,  !- Name
+    Heating Supply Bypass Inlet Node,  !- Inlet Node Name
+    Heating Supply Bypass Outlet Node;  !- Outlet Node Name
+
+  Pipe:Adiabatic,
+    Heating Supply Outlet,   !- Name
+    Heating Supply Exit Pipe Inlet Node,  !- Inlet Node Name
+    HW Supply Outlet Node;   !- Outlet Node Name
+
+  Pipe:Adiabatic,
+    Heating Demand Inlet Pipe,  !- Name
+    HW Demand Inlet Node,    !- Inlet Node Name
+    HW Demand Entrance Pipe Outlet Node;  !- Outlet Node Name
+
+  Pipe:Adiabatic,
+    Heating Demand Outlet Pipe,  !- Name
+    HW Demand Exit Pipe Inlet Node,  !- Inlet Node Name
+    HW Demand Outlet Node;   !- Outlet Node Name
+
+  Pipe:Adiabatic,
+    Heating Demand Bypass,   !- Name
+    Heating Demand Bypass Inlet Node,  !- Inlet Node Name
+    Heating Demand Bypass Outlet Node;  !- Outlet Node Name
+    
+  PlantLoop,
+    Hot Water Loop,          !- Name
+    Water,                   !- Fluid Type
+    ,                        !- User Defined Fluid Type
+    Hot Loop Operation,      !- Plant Equipment Operation Scheme Name
+    HW Supply Outlet Node,   !- Loop Temperature Setpoint Node Name
+    100,                     !- Maximum Loop Temperature {C}
+    10,                      !- Minimum Loop Temperature {C}
+    0.0019,                  !- Maximum Loop Flow Rate {m3/s}
+    0.0,                     !- Minimum Loop Flow Rate {m3/s}
+    autocalculate,           !- Plant Loop Volume {m3}
+    HW Supply Inlet Node,    !- Plant Side Inlet Node Name
+    HW Supply Outlet Node,   !- Plant Side Outlet Node Name
+    Heating Supply Side Branches,  !- Plant Side Branch List Name
+    Heating Supply Side Connectors,  !- Plant Side Connector List Name
+    HW Demand Inlet Node,    !- Demand Side Inlet Node Name
+    HW Demand Outlet Node,   !- Demand Side Outlet Node Name
+    Heating Demand Side Branches,  !- Demand Side Branch List Name
+    Heating Demand Side Connectors,  !- Demand Side Connector List Name
+    Optimal;                 !- Load Distribution Scheme
+    
+  PlantEquipmentOperationSchemes,
+    Hot Loop Operation,      !- Name
+    PlantEquipmentOperation:HeatingLoad,  !- Control Scheme 1 Object Type
+    Purchased Only,          !- Control Scheme 1 Name
+    PlantOnSched;            !- Control Scheme 1 Schedule Name
+    
+  PlantEquipmentOperation:HeatingLoad,
+    Purchased Only,          !- Name
+    0,                       !- Load Range 1 Lower Limit {W}
+    1000000,                 !- Load Range 1 Upper Limit {W}
+    heating plant;           !- Range 1 Equipment List Name
+
+  PlantEquipmentList,
+    heating plant,           !- Name
+    DistrictHeating,         !- Equipment 1 Object Type
+    Purchased Heating;       !- Equipment 1 Name
+    
+  SetpointManager:Scheduled,
+    Hot Water Loop Setpoint Manager,  !- Name
+    Temperature,             !- Control Variable
+    HW Loop Temp Schedule,   !- Schedule Name
+    Hot Water Loop Setpoint Node List;  !- Setpoint Node or NodeList Name
+    
+  Pump:VariableSpeed,
+    HW Circ Pump,            !- Name
+    HW Supply Inlet Node,    !- Inlet Node Name
+    HW Pump Outlet Node,     !- Outlet Node Name
+    0.0013,                  !- Rated Flow Rate {m3/s}
+    300000,                  !- Rated Pump Head {Pa}
+    560,                     !- Rated Power Consumption {W}
+    0.87,                    !- Motor Efficiency
+    0.0,                     !- Fraction of Motor Inefficiencies to Fluid Stream
+    0,                       !- Coefficient 1 of the Part Load Performance Curve
+    1,                       !- Coefficient 2 of the Part Load Performance Curve
+    0,                       !- Coefficient 3 of the Part Load Performance Curve
+    0,                       !- Coefficient 4 of the Part Load Performance Curve
+    0,                       !- Minimum Flow Rate {m3/s}
+    INTERMITTENT;            !- Pump Control Type
+    
+  DistrictHeating,
+    Purchased Heating,       !- Name
+    Purchased Heat Inlet Node,  !- Hot Water Inlet Node Name
+    Purchased Heat Outlet Node,  !- Hot Water Outlet Node Name
+    1000000;                 !- Nominal Capacity {W}
+    
+  Schedule:Compact,
+    HW Loop Temp Schedule,   !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,60;         !- Field 3
+    
+  Schedule:Compact,
+    PlantOnSched,            !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0;        !- Field 3
+    
+Schedule:Compact,
+    BaseboardCoilAvailSched,    !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,           !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,1.0;        !- Field 3
+    
+Sizing:Plant,
+    Hot Water Loop,          !- Plant or Condenser Loop Name
+    heating,                 !- Loop Type
+    82.,                     !- Design Loop Exit Temperature {C}
+    11;                      !- Loop Design Temperature Difference {deltaC}
+    
